@@ -17,7 +17,9 @@ class YearAdapter(
         val currentYear = Year.now().value
         holder.yearView.setBackgroundColor(
             when {
-                years[position] < currentYear -> Color.GRAY
+                //years[position] < currentYear -> Color.rgb(140, 242, 192)
+                years[position] < currentYear -> Color.rgb(69, 219, 147)
+
                 years[position] == currentYear -> Color.YELLOW
                 else -> Color.WHITE
             }
