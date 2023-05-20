@@ -6,7 +6,6 @@ import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.DatePicker
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -35,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         val homeButton = findViewById<Button>(R.id.homeBtn)
         homeButton.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, StartActivity::class.java)
             startActivity(intent)
         }
     }
