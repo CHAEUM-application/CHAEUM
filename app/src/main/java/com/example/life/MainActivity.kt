@@ -3,12 +3,16 @@ package com.example.life
 import YearAdapter
 import android.content.Intent
 import android.graphics.Typeface
+import android.icu.util.Calendar
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity() {
@@ -16,21 +20,38 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.lifepage) // Assume your layout is activity_main.xml
 
-        val birthYear = intent.getIntExtra("year", 0)
-        val name = intent.getStringExtra("name")
+        val id = intent.getStringExtra("id")
+        if (id != null) {
+            RetrofitClient.api.getUserID(id).enqueue(object: Callback<UsersDTO>{
+                override fun onResponse(call: Call<UsersDTO>, response: Response<UsersDTO>) {
+                    val result = response.body()
+                    val name = result?.c_name
+                    // date에서 year만 빼오는 함수
+                    val calendar = Calendar.getInstance()
+                    calendar.time = result?.c_date
+                    val birthYear = calendar.get(Calendar.YEAR)
+//                    val birthYear = intent.getIntExtra("year", 0)
+//                    val name = intent.getStringExtra("name")
 
-        val userBirthday = findViewById<TextView>(R.id.userBirthday)
-        val userName = findViewById<TextView>(R.id.userName)
+                    val userBirthday = findViewById<TextView>(R.id.userBirthday)
+                    val userName = findViewById<TextView>(R.id.userName)
 
-        userName.setTypeface(Typeface.DEFAULT_BOLD, Typeface.BOLD)
-        userBirthday.setTypeface(Typeface.DEFAULT_BOLD, Typeface.BOLD)
+                    userName.setTypeface(Typeface.DEFAULT_BOLD, Typeface.BOLD)
+                    userBirthday.setTypeface(Typeface.DEFAULT_BOLD, Typeface.BOLD)
 
-        userName.text = name
-        userBirthday.text = "${birthYear} ~ ${birthYear + 90}"
+                    userName.text = name
+                    userBirthday.text = "${birthYear} ~ ${birthYear + 90}"
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.layoutManager = GridLayoutManager(this, 10) // Assume 10 items per row
-        recyclerView.adapter = YearAdapter(birthYear)
+                    val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+                    recyclerView.layoutManager = GridLayoutManager(this@MainActivity, 10) // Assume 10 items per row
+                    recyclerView.adapter = YearAdapter(birthYear)
+                }
+
+                override fun onFailure(call: Call<UsersDTO>, t: Throwable) {
+                }
+
+            })
+        }
 
         val homeButton = findViewById<Button>(R.id.homeBtn)
         homeButton.setOnClickListener {

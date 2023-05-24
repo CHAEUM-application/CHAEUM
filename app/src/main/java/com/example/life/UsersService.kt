@@ -18,11 +18,6 @@ interface UsersService {
         @Path("c_id") c_id: String,
         @Field("c_pw") c_pw: String,
         @Field("c_date") c_date: Date
-    ): Call<UsersDTO>
+    ): Call<Void>
 
-//    @GET("user/{c_id}")
-//    fun getLoginInfo(
-//        @Path("c_id") c_id: String,
-//        @Path("c_pw") c_pw: String
-//    ): Call<UsersDTO>
 }

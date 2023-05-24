@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var editTextID: EditText
@@ -43,8 +44,6 @@ class LoginActivity : AppCompatActivity() {
                                 Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
                                 val intent = Intent(this@LoginActivity, MainActivity::class.java).apply{
                                     putExtra("id", result.c_id)
-                                    putExtra("name", result.c_name)
-                                    putExtra("date", result.c_date)
                                 }
                                 startActivity(intent)
                                 finish()
@@ -56,11 +55,9 @@ class LoginActivity : AppCompatActivity() {
                     override fun onFailure(call: Call<UsersDTO>, t: Throwable) {
                         showLoginError()
                     }
-
                 })
             }
         }
-
         backButton.setOnClickListener {
             onBackPressed()
         }
