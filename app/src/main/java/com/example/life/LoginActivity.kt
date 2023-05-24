@@ -39,26 +39,22 @@ class LoginActivity : AppCompatActivity() {
                 RetrofitClient.api.getUserID(id).enqueue(object : Callback<UsersDTO> {
                     override fun onResponse(call: Call<UsersDTO>, response: Response<UsersDTO>) {
                             val result = response.body()
-                            val dialog = AlertDialog.Builder(this@LoginActivity)
-                            //val statusCode = response.code()
                             if (result != null && id == result.c_id && pw == result.c_pw) {
                                 Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
-                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                val intent = Intent(this@LoginActivity, MainActivity::class.java).apply{
+                                    putExtra("id", result.c_id)
+                                    putExtra("name", result.c_name)
+                                    putExtra("date", result.c_date)
+                                }
                                 startActivity(intent)
                                 finish()
-
                             } else {
                                 // 로그인 실패
-                                Toast.makeText(this@LoginActivity, "로그인 실패", Toast.LENGTH_SHORT).show()
+                                showLoginError()
                             }
-
-                            // 서버 응답 오류
-                            //Toast.makeText(this@LoginActivity, "서버 응답 오류: $statusCode", Toast.LENGTH_SHORT).show()
-                            //Log.d("LoginActivity", "서버 응답 오류: $statusCode")
                         }
                     override fun onFailure(call: Call<UsersDTO>, t: Throwable) {
-                        Toast.makeText(this@LoginActivity, "네트워크 연결 오류", Toast.LENGTH_SHORT).show()
-                        Log.e("로그인 실패", t.message ?: "Unknown error")
+                        showLoginError()
                     }
 
                 })

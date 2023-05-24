@@ -14,15 +14,15 @@ interface UsersService {
     @FormUrlEncoded
     @POST("user/{c_id}")
     fun postUsersInfo(
-        @Path("c_name") c_name: String,
+        @Field("c_name") c_name: String,
         @Path("c_id") c_id: String,
-        @Path("c_pw") c_pw: String,
-        @Path("c_date") c_date: Date
+        @Field("c_pw") c_pw: String,
+        @Field("c_date") c_date: Date
     ): Call<UsersDTO>
 
-    @GET("user/{c_id}")
-    fun getLoginInfo(
-        @Path("c_id") c_id: String,
-        @Path("c_pw") c_pw: String
-    ): Call<UsersDTO>
+//    @GET("user/{c_id}")
+//    fun getLoginInfo(
+//        @Path("c_id") c_id: String,
+//        @Path("c_pw") c_pw: String
+//    ): Call<UsersDTO>
 }

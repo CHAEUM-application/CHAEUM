@@ -1,6 +1,5 @@
 package com.example.life
 
-import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,11 +9,10 @@ import androidx.annotation.RequiresApi
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.time.LocalDate
 import java.util.Calendar
 import java.sql.Date
 
-class SingUpActivity : AppCompatActivity() {
+class SignUpActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,19 +40,34 @@ class SingUpActivity : AppCompatActivity() {
             if (name.isEmpty() || id.isEmpty() || pw.isEmpty()) {
                 Toast.makeText(this, "정보를 다 입력해주세요.", Toast.LENGTH_SHORT).show()
             } else {
-                RetrofitClient.api.postUsersInfo(name, id, pw, date).enqueue(object: Callback<UsersDTO> {
+                RetrofitClient.api.getUserID(id).enqueue(object: Callback<UsersDTO>{
                     override fun onResponse(call: Call<UsersDTO>, response: Response<UsersDTO>) {
-                        val result = response.body()
-                        if (result != null) {
-                            Toast.makeText(this@SingUpActivity, "성공", Toast.LENGTH_SHORT).show()
-                    }else {
-                            Toast.makeText(this@SingUpActivity, "실패", Toast.LENGTH_SHORT).show()
-                        }
+                        Toast.makeText(this@SignUpActivity, "중복된 ID 입니다.", Toast.LENGTH_SHORT).show()
                     }
+
                     override fun onFailure(call: Call<UsersDTO>, t: Throwable) {
-                        Toast.makeText(this@SingUpActivity, "오류", Toast.LENGTH_SHORT).show()
+                        RetrofitClient.api.postUsersInfo(name, id, pw, date).enqueue(object: Callback<UsersDTO> {
+                            override fun onResponse(
+                                call: Call<UsersDTO>,
+                                response: Response<UsersDTO>
+                            ) {
+                                val result = response.body()
+                                if (result != null) {
+                                    Toast.makeText(this@SignUpActivity, "성공", Toast.LENGTH_SHORT).show()
+                                } else {
+                                    Toast.makeText(this@SignUpActivity, "실패", Toast.LENGTH_SHORT).show()
+                                }
+                                Log.d("SignUpActivity", "API Response: $response")
+                            }
+
+                            override fun onFailure(call: Call<UsersDTO>, t: Throwable) {
+                                Toast.makeText(this@SignUpActivity, "오류", Toast.LENGTH_SHORT).show()
+                                Log.e("SignUpActivity", "API Failure: ${t.message}", t)
+                            }
+                        })
                     }
                 })
+
 
                 //val intent = Intent(this, MainActivity::class.java).apply {
                 //    putExtra("name", name)
