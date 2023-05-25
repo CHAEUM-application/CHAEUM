@@ -19,3 +19,4 @@ object RetrofitClient {
         api = retrofit.create(RetroService::class.java)
     }
 }
+
