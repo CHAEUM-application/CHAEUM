@@ -6,6 +6,4 @@ import androidx.recyclerview.widget.RecyclerView
 
 class WeekViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val weekView: View = view.findViewById(R.id.weekView)
-    //val weekTextView: TextView = view.findViewById(R.id.weekTextView)
-
 }

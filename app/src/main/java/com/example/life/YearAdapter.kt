@@ -17,25 +17,6 @@ class YearAdapter(
     private val context: Context
 ) : RecyclerView.Adapter<YearViewHolder>() {
 
-    /*
-    @RequiresApi(Build.VERSION_CODES.O)
-    override fun onBindViewHolder(holder: YearViewHolder, position: Int) {
-        val currentYear = Year.now().value
-        holder.yearView.setBackgroundColor(
-            when {
-                years[position] < currentYear -> Color.rgb(69, 219, 147)
-                years[position] == currentYear -> {
-                    holder.yearView.setOnClickListener {
-                        val intent = Intent(context, YearActivity::class.java)
-                        context.startActivity(intent)
-                    }
-                    Color.YELLOW
-                }
-                else -> Color.WHITE
-            }
-        )
-    } */
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: YearViewHolder, position: Int) {
         val currentYear = Year.now().value

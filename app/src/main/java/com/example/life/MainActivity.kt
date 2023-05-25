@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
     private fun updateUI(name: String?, birthYear: Int) {
         val userBirthday = findViewById<TextView>(R.id.userBirthday)
         val userName = findViewById<TextView>(R.id.userName)
