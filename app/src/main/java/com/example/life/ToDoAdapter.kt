@@ -113,7 +113,6 @@ class ToDoAdapter(
     fun getTodosCount(): Int = todos.size
 }
 */
-
 class ToDoAdapter(
     private val todos: MutableList<ToDo>,
     private val progressBar: ProgressBar
@@ -126,30 +125,44 @@ class ToDoAdapter(
 
     override fun onBindViewHolder(holder: ToDoViewHolder, position: Int) {
         val todo = todos[position]
-        holder.checkBox.text = todo.text
+        holder.checkBox.text = ""
         holder.checkBox.isChecked = todo.isDone
         holder.editText.setText(todo.text)
+
+        holder.checkBox.setOnCheckedChangeListener(null)
+        holder.checkBox.isChecked = todo.isDone
 
         holder.checkBox.setOnCheckedChangeListener { _, isChecked ->
             todo.isDone = isChecked
             if (isChecked) {
-                holder.checkBox.text = todo.text
+                holder.checkBox.text = ""
+                holder.editText.isEnabled = false
+                holder.doneButton.isEnabled = false
             } else {
-                holder.checkBox.text = null
+                holder.checkBox.text = ""
+                holder.editText.isEnabled = true
+                holder.doneButton.isEnabled = true
             }
             progressBar.progress = getCompletedTodosCount()
         }
 
-        holder.editText.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                holder.doneButton.isEnabled = true
+        holder.editText.isEnabled = !todo.isDone
+
+        holder.editText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable) {
+                todo.text = s.toString()
             }
-        }
+        })
 
         holder.doneButton.setOnClickListener {
-            holder.editText.isEnabled = false
-            holder.editText.clearFocus()
-            holder.doneButton.isEnabled = false
+            if (!todo.isDone) {
+                holder.editText.isEnabled = false
+                holder.doneButton.isEnabled = false
+            }
         }
     }
 
