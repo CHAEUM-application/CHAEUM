@@ -1,3 +1,5 @@
+package com.example.life
+
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -6,8 +8,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
-import com.example.life.R
-import com.example.life.YearActivity
 import java.time.Year
 
 

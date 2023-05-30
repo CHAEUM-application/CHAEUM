@@ -27,7 +27,7 @@ class YearActivity : AppCompatActivity() {
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = MonthAdapter()
+        recyclerView.adapter = MonthAdapter(selectedYear)
 
         val backButton = findViewById<Button>(R.id.backButton)
         backButton.setOnClickListener {

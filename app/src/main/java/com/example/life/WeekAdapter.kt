@@ -1,27 +1,30 @@
 package com.example.life
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import android.util.Log
 
-// inside onCreateViewHolder
-
-class WeekAdapter(private val numberOfWeeks: Int) : RecyclerView.Adapter<WeekViewHolder>() {
+class WeekAdapter(private val numberOfWeeks: Int, private val context: Context, private val year: Int, private val month: String) : RecyclerView.Adapter<WeekViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeekViewHolder {
-
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_week, parent, false)
-        return WeekViewHolder(view)
+        val viewHolder = WeekViewHolder(view)
+        return viewHolder
     }
 
     override fun onBindViewHolder(holder: WeekViewHolder, position: Int) {
-        holder.weekView.setBackgroundColor(Color.LTGRAY)  // Or whatever color you want
+        holder.weekView.setOnClickListener {
+            val intent = Intent(context, ToDoActivity::class.java)
+            intent.putExtra("selectedYear", year)
+            intent.putExtra("selectedMonth", month)
+            intent.putExtra("selectedWeek", position + 1)
+            context.startActivity(intent)
+        }
+        holder.weekView.setBackgroundColor(Color.LTGRAY) // Set the color of the week box to light gray
     }
 
     override fun getItemCount(): Int = numberOfWeeks
-
 }
-

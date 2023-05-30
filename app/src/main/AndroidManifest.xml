@@ -26,6 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -37,8 +38,12 @@
             android:name=".SignUpActivity"
             android:exported="true" />
 
-        <activity android:name=".ToDoListActivity" />
+        <activity android:name=".ToDoActivity" />
 
     </application>
+
+
+
+
 
 </manifest>

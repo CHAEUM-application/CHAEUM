@@ -9,3 +9,4 @@ data class UsersDTO(
     @SerializedName("c_pw") val c_pw: String,
     @SerializedName("c_date") @JsonAdapter(DateDeserializer::class) val c_date: Date
 )
+

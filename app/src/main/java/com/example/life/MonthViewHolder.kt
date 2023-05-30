@@ -8,4 +8,3 @@ class MonthViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val monthView: TextView = view.findViewById(R.id.monthView)
     val weeksRecyclerView: RecyclerView = view.findViewById(R.id.weeksRecyclerView)
 }
-

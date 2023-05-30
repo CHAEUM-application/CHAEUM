@@ -1,6 +1,5 @@
 package com.example.life
 
-import YearAdapter
 import android.content.Intent
 import android.graphics.Typeface
 import android.icu.util.Calendar
