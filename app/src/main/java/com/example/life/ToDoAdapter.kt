@@ -126,14 +126,14 @@ class ToDoAdapter(
 
     override fun onBindViewHolder(holder: ToDoViewHolder, position: Int) {
         val todo = todos[position]
-        holder.checkBox.text = todo.description
+        holder.checkBox.text = todo.text
         holder.checkBox.isChecked = todo.isDone
-        holder.editText.setText(todo.description)
+        holder.editText.setText(todo.text)
 
         holder.checkBox.setOnCheckedChangeListener { _, isChecked ->
             todo.isDone = isChecked
             if (isChecked) {
-                holder.checkBox.text = todo.description
+                holder.checkBox.text = todo.text
             } else {
                 holder.checkBox.text = null
             }
@@ -163,7 +163,7 @@ class ToDoAdapter(
     fun removeTodo(position: Int) {
         val removedTodo = todos.removeAt(position)
         if (removedTodo.isDone) {
-            removedTodo.description = ""
+            removedTodo.text = ""
         }
         notifyDataSetChanged()
         progressBar.progress = getCompletedTodosCount()
