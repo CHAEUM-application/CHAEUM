@@ -26,7 +26,7 @@ interface RetroService {
     @GET("todo/{id}")
     fun getTodoID(
         @Path("id") id: String
-    ): Call<ToDoDTO>
+    ): Call<List<ToDoDTO>>
 
     @FormUrlEncoded
     @POST("todo/{id}")
@@ -52,7 +52,7 @@ interface RetroService {
     ): Call<Unit>
 
     @FormUrlEncoded
-    @DELETE("/todo/{id}/{year}/{month}/{week}/{text}")
+    @HTTP(method = "DELETE", path= "/todo/{id}/{year}/{month}/{week}/{text}", hasBody = true)
     fun delTodoInfo(
         @Path("id") id: String,
         @Path("year") year: String,
