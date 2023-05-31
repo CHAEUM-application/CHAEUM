@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         homeButton.setOnClickListener {
             val intent = Intent(this, StartActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
     private fun updateUI(name: String?, birthYear: Int) {

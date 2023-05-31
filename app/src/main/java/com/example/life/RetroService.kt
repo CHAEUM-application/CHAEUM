@@ -40,13 +40,15 @@ interface RetroService {
     ): Call<Unit>
 
     @FormUrlEncoded
-    @PUT("todo/{id}/{year}/{month}/{week}")
-    fun putTodoInfo(
+    @PUT("todo/{id}")
+    fun insTodoInfo(
         @Path("id") id: String,
-        @Path("year") year: String,
-        @Path("month") month: String,
-        @Path("week") week: String,
-        @Field("text") text: String
+        @Field("year") year: String,
+        @Field("month") month: String,
+        @Field("week") week: String,
+        @Field("req_text") req_text: String,
+        @Field("res_text") res_text: String,
+        @Field("status") status: Int
     ): Call<Unit>
 
     @FormUrlEncoded
@@ -58,20 +60,5 @@ interface RetroService {
         @Path("week") week: String,
         @Path("text") text: String
     ): Call<Unit>
-
-    /* youngseoplee */
-    /*
-    @GET("/todos")
-    suspend fun getTodos(): List<TodoDTO>
-
-    @POST("/todos")
-    suspend fun addTodo(@Body todoDTO: TodoDTO): TodoDTO
-
-    @PUT("/todos/{id}")
-    suspend fun updateTodo(@Path("id") id: String, @Body todoDTO: TodoDTO): TodoDTO
-
-    @DELETE("/todos/{id}")
-    suspend fun deleteTodo(@Path("id") id: String): Response<Unit>
-    */
 
 }
