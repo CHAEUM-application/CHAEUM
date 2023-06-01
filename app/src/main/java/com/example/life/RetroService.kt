@@ -30,7 +30,7 @@ interface RetroService {
 
     @FormUrlEncoded
     @POST("todo/{id}")
-    fun postTodoInfo(
+    fun insTodoInfo(
         @Path("id") id: String,
         @Field("year") year: String,
         @Field("month") month: String,
@@ -41,7 +41,7 @@ interface RetroService {
 
     @FormUrlEncoded
     @PUT("todo/{id}")
-    fun insTodoInfo(
+    fun updTodoInfo(
         @Path("id") id: String,
         @Field("year") year: String,
         @Field("month") month: String,

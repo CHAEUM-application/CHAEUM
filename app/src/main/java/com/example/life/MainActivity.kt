@@ -20,8 +20,8 @@ class MainActivity : AppCompatActivity() {
 
         var birthYear = intent.getIntExtra("year", 0)
         var name = intent.getStringExtra("name")
-
         val id = intent.getStringExtra("id")
+
         if (id != null) {
             RetrofitClient.api.getUserID(id).enqueue(object: Callback<UsersDTO>{
                 override fun onResponse(call: Call<UsersDTO>, response: Response<UsersDTO>) {
@@ -31,15 +31,16 @@ class MainActivity : AppCompatActivity() {
                     calendar.time = result?.c_date
                     birthYear = calendar.get(Calendar.YEAR)
 
-                    updateUI(name, birthYear)
+                    updateUI(name, birthYear, id)
                 }
 
                 override fun onFailure(call: Call<UsersDTO>, t: Throwable) {
-                    updateUI(name, birthYear)
+                    updateUI(name, birthYear, id)
                 }
             })
         } else {
-            updateUI(name, birthYear)
+                return
+                //updateUI(name, birthYear, id)
         }
 
         val homeButton = findViewById<Button>(R.id.homeBtn)
@@ -49,7 +50,7 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
     }
-    private fun updateUI(name: String?, birthYear: Int) {
+    private fun updateUI(name: String?, birthYear: Int, id: String) {
         val userBirthday = findViewById<TextView>(R.id.userBirthday)
         val userName = findViewById<TextView>(R.id.userName)
 
@@ -61,7 +62,7 @@ class MainActivity : AppCompatActivity() {
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = GridLayoutManager(this@MainActivity, 10) // Assume 10 items per row
-        recyclerView.adapter = YearAdapter(birthYear, context = this) // Pass context here
+        recyclerView.adapter = MainAdapter(birthYear, id, context = this) // Pass context here
     }
 }
 

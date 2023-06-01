@@ -17,6 +17,7 @@ class YearActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_year)
+        val id = intent.getStringExtra("id")
 
         // retrieve the selectedYear from the intent
         val selectedYear = intent.getIntExtra("selectedYear", Year.now().value)
@@ -27,7 +28,7 @@ class YearActivity : AppCompatActivity() {
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = MonthAdapter(selectedYear)
+        recyclerView.adapter = id?.let { MonthAdapter(selectedYear, it) }
 
         val backButton = findViewById<Button>(R.id.backButton)
         backButton.setOnClickListener {

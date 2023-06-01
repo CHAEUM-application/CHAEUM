@@ -8,6 +8,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class ToDoActivity : AppCompatActivity() {
@@ -23,8 +26,14 @@ class ToDoActivity : AppCompatActivity() {
         val selectedMonth = intent.getStringExtra("selectedMonth")
         val selectedWeek = intent.getIntExtra("selectedWeek", -1)
 
+        //retrofit 사용 변수
+        val id = intent.getStringExtra("id")
+        val year = selectedYear.toString()
+        val month = selectedMonth.toString()
+        val week = selectedWeek.toString()
+
         val dateTextView = findViewById<TextView>(R.id.dateTextView)
-        dateTextView.text = "Selected Year: $selectedYear, Month: $selectedMonth, Week: $selectedWeek"
+        dateTextView.text = "Selected Year: $selectedYear, Month: $selectedMonth, Week: $selectedWeek, id: $id"
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -42,6 +51,19 @@ class ToDoActivity : AppCompatActivity() {
                     false
                 )
             )
+            if (id != null) {
+                RetrofitClient.api.insTodoInfo(id, year, month, week, "", 0).enqueue(object: Callback<Unit>{
+                    override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                        val result = response.body()
+                        return
+                    }
+
+                    override fun onFailure(call: Call<Unit>, t: Throwable) {
+                        return
+                    }
+
+                })
+            }
             progressBar.max = adapter.getTodosCount()
         }
 
