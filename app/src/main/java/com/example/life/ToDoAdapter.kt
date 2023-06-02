@@ -32,8 +32,14 @@ class ToDoAdapter(
 
     override fun onBindViewHolder(holder: ToDoViewHolder, position: Int) {
         val todo = todos[position]
-        holder.doneButton.text = "MODIFY"
-        holder.editText.isEnabled = false
+        if(todo.text == "") {
+            holder.doneButton.text = "ENTER"
+            holder.editText.isEnabled = true
+        }
+        else{
+            holder.doneButton.text = "MODIFY"
+            holder.editText.isEnabled = false
+        }
         holder.checkBox.text = ""
         holder.checkBox.isChecked = todo.isDone
         holder.editText.setText(todo.text)
