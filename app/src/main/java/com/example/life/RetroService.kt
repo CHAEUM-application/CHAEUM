@@ -51,8 +51,8 @@ interface RetroService {
         @Field("status") status: Int
     ): Call<Unit>
 
-    @FormUrlEncoded
-    @HTTP(method = "DELETE", path= "/todo/{id}/{year}/{month}/{week}/{text}", hasBody = true)
+    //@FormUrlEncoded
+    @HTTP(method = "DELETE", path= "/todo/{id}/{year}/{month}/{week}/{text}", hasBody = false)
     fun delTodoInfo(
         @Path("id") id: String,
         @Path("year") year: String,

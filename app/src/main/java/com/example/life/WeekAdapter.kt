@@ -7,7 +7,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class WeekAdapter(private val numberOfWeeks: Int, private val context: Context, private val year: Int, private val month: String, private val id: String) : RecyclerView.Adapter<WeekViewHolder>() {
+class WeekAdapter(private val numberOfWeeks: Int,
+                  private val context: Context,
+                  private val year: Int,
+                  private val month: String,
+                  private val id: String) : RecyclerView.Adapter<WeekViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeekViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_week, parent, false)
