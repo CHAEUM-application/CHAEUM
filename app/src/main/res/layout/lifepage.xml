@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#E6181818">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -21,6 +22,7 @@
         android:layout_height="34dp"
         android:text="NAME"
         android:textAlignment="center"
+        android:textColor="#B3FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,6 +36,7 @@
         android:layout_height="34dp"
         android:text="0000.00.00. ~ 0090.00.00"
         android:textAlignment="center"
+        android:textColor="#B3FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +48,9 @@
         android:id="@+id/homeBtn"
         android:layout_width="38dp"
         android:layout_height="41dp"
+        android:backgroundTint="#3D3F41"
         android:text="Button"
+        android:textColor="#B3FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.927"

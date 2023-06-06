@@ -2,53 +2,63 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E6181818"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/dateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Selected Date: " />
+        android:text="Selected Date: "
+        android:textAlignment="center"
+        android:textColor="#B3FFFFFF" />
 
     <ProgressBar
         android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="12dp"
-        android:minHeight="12dp"
+        android:indeterminate="false"
         android:maxHeight="12dp"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:indeterminate="false" />
+        android:minHeight="12dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:background="#4D181818"
         android:scrollbars="vertical" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/addButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add ToDo" />
+            android:backgroundTint="#3D3F41"
+            android:text="Add ToDo"
+            android:textColor="#B3FFFFFF" />
 
         <Button
             android:id="@+id/removeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Remove ToDo" />
+            android:backgroundTint="#3D3F41"
+            android:text="Remove ToDo"
+            android:textColor="#B3FFFFFF" />
 
         <Button
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Back" />
+            android:backgroundTint="#3D3F41"
+            android:text="Back"
+            android:textColor="#B3FFFFFF" />
 
     </LinearLayout>
 </LinearLayout>

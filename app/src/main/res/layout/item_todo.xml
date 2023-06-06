@@ -1,24 +1,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#2C2F31"
     android:orientation="horizontal">
 
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:drawableTint="#B3FFFFFF"
+        android:textColor="#B3FFFFFF" />
 
     <EditText
         android:id="@+id/editText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textColor="#B3FFFFFF" />
 
     <Button
         android:id="@+id/doneButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ENTER" />
+        android:backgroundTint="#3D3F41"
+        android:text="ENTER"
+        android:textColor="#B3FFFFFF" />
 
 </LinearLayout>

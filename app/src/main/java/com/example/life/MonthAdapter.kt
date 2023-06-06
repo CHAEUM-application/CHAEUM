@@ -31,4 +31,8 @@ class MonthAdapter(private val year: Int, private val id: String) : RecyclerView
     }
 
     override fun getItemCount(): Int = months.size
+
+    fun refreshData() {
+        notifyDataSetChanged()
+    }
 }

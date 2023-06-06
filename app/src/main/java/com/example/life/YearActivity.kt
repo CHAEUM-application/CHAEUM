@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import java.time.Year
 
 class YearActivity : AppCompatActivity() {
+
+    private lateinit var adapter: MonthAdapter  // Add this line
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,9 +32,16 @@ class YearActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = id?.let { MonthAdapter(selectedYear, it) }
 
+        adapter = MonthAdapter(selectedYear, id ?: "")  // Modify this line
+        recyclerView.adapter = adapter
+
         val backButton = findViewById<Button>(R.id.backButton)
         backButton.setOnClickListener {
             finish()
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        adapter.refreshData()
     }
 }

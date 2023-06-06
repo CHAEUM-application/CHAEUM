@@ -6,25 +6,32 @@
 
     <Button
         android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="10dp"
-        android:text="B" />
+        android:backgroundTint="#3D3F41"
+        android:text="B"
+        android:textColor="#B3FFFFFF" />
 
     <TextView
         android:id="@+id/yearTextView"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="50dp"
         android:layout_alignParentTop="true"
+        android:background="#E6181818"
         android:gravity="center_horizontal"
-        android:textSize="20sp" />
+        android:textAlignment="center"
+        android:textColor="#B3FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/yearTextView" />
+        android:layout_below="@+id/yearTextView"
+        android:background="#E6181818" />
 
 </RelativeLayout>

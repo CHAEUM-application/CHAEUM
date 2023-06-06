@@ -10,8 +10,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
 class ToDoAdapter(
-    private val todos: MutableList<ToDo>,
+    val todos: MutableList<ToDo>,
     private val progressBar: ProgressBar,
     private val id: String,
     private val year: String,
@@ -32,6 +33,11 @@ class ToDoAdapter(
 
     override fun onBindViewHolder(holder: ToDoViewHolder, position: Int) {
         val todo = todos[position]
+
+        // Initialize progress bar
+        progressBar.max = todos.size
+        progressBar.progress = getCompletedTodosCount()
+
         if(todo.text == "") {
             holder.doneButton.text = "ENTER"
             holder.editText.isEnabled = true
@@ -126,14 +132,14 @@ class ToDoAdapter(
     fun addTodo(todo: ToDo) {
         todos.add(0, todo)
         notifyItemInserted(0)
+        progressBar.max = todos.size // Update the total count in the progress bar
+        progressBar.progress = getCompletedTodosCount()
     }
 
     fun removeTodo(position: Int) {
         val removedTodo = todos.removeAt(position)
-        if (removedTodo.isDone) {
-            removedTodo.text = ""
-        }
         notifyDataSetChanged()
+        progressBar.max = todos.size // Update the total count in the progress bar
         progressBar.progress = getCompletedTodosCount()
     }
 
