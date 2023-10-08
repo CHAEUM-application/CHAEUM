@@ -39,7 +39,7 @@ class ToDoActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progressBar)
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = ToDoAdapter(mutableListOf(), progressBar, id ?: "", year, month, week, 0)
+        adapter = ToDoAdapter(mutableListOf(), progressBar, id ?: "", year, month, week, 0, 0)
         recyclerView.adapter = adapter
 
         id?.let {
@@ -95,7 +95,7 @@ class ToDoActivity : AppCompatActivity() {
     }
 
     private fun addTodo(id: String, year: String, month: String, week: String) {
-        RetrofitClient.api.insTodoInfo(id, year, month, week, "", 0).enqueue(object: Callback<Unit>{
+        RetrofitClient.api.insTodoInfo(id, year, month, week, "", 0, 0).enqueue(object: Callback<Unit>{
             override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
                 adapter.addTodo(
                     ToDo(

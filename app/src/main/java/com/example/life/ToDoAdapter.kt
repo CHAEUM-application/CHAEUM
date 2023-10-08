@@ -18,7 +18,8 @@ class ToDoAdapter(
     private val year: String,
     private val month: String,
     private val week: String,
-    private val status: Int
+    private val status: Int,
+    private val feel: Int
 ) : RecyclerView.Adapter<ToDoViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDoViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_todo, parent, false)
@@ -63,7 +64,7 @@ class ToDoAdapter(
                 r_status = 0
             }
             val text = holder.editText.text.toString()
-            RetrofitClient.api.updTodoInfo(id, year, month, week, text, text, r_status)
+            RetrofitClient.api.updTodoInfo(id, year, month, week, text, text, r_status, feel)
                 .enqueue(object : Callback<Unit> {
                     override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
                         // status 1로 변경 완료
@@ -111,7 +112,7 @@ class ToDoAdapter(
                 if (req_text == res_text) {
                     return@setOnClickListener
                 } else {
-                    RetrofitClient.api.updTodoInfo(id, year, month, week, req_text, res_text, -1)
+                    RetrofitClient.api.updTodoInfo(id, year, month, week, req_text, res_text, -1, feel)
                         .enqueue(object : Callback<Unit> {
                             override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
                                 // text 변경 완료

@@ -67,17 +67,17 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextPW" />
 
     <Button
-        android:id="@+id/loginButton"
-        android:layout_width="110dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/editTextPW"
-        android:layout_marginStart="90dp"
-        android:layout_marginTop="68dp"
-        android:background="#3D3F41"
-        android:text="login"
-        android:textColor="#B3FFFFFF"
+            android:id="@+id/loginButton"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/editTextPW"
+            android:layout_marginStart="90dp"
+            android:layout_marginTop="68dp"
+            android:background="#3D3F41"
+            android:text="login"
+            android:textColor="#B3FFFFFF"
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPW" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextPW"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

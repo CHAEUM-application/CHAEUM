@@ -8,5 +8,6 @@ data class ToDoDTO(
     @SerializedName("month") val month: String,
     @SerializedName("week") val week: String,
     @SerializedName("text") var text: String,
-    @SerializedName("status") var status: Int
+    @SerializedName("status") var status: Int,
+    @SerializedName("feel") var feel: Int
 )

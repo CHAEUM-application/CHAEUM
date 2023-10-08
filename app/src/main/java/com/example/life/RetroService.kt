@@ -36,7 +36,8 @@ interface RetroService {
         @Field("month") month: String,
         @Field("week") week: String,
         @Field("text") text: String,
-        @Field("status") status: Int
+        @Field("status") status: Int,
+        @Field("feel") feel: Int
     ): Call<Unit>
 
     @FormUrlEncoded
@@ -48,7 +49,8 @@ interface RetroService {
         @Field("week") week: String,
         @Field("req_text") req_text: String,
         @Field("res_text") res_text: String,
-        @Field("status") status: Int
+        @Field("status") status: Int,
+        @Field("feel") feel: Int
     ): Call<Unit>
 
     //@FormUrlEncoded
