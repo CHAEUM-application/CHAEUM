@@ -6,10 +6,12 @@ import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.Spinner
 import androidx.recyclerview.widget.RecyclerView
 
 class ToDoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val checkBox: CheckBox = itemView.findViewById(R.id.checkBox)
+    val emotionBox: Spinner = itemView.findViewById(R.id.emotionBox)
     val editText: EditText = itemView.findViewById(R.id.editText)
     val doneButton: Button = itemView.findViewById(R.id.doneButton)
 
@@ -32,6 +34,7 @@ class ToDoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             editText.isClickable = false
             doneButton.isEnabled = false
         }
+
     }
 }
 

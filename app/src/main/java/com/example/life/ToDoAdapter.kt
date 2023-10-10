@@ -1,15 +1,18 @@
 package com.example.life
 
+import android.annotation.SuppressLint
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.ProgressBar
 import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
 
 class ToDoAdapter(
     val todos: MutableList<ToDo>,
@@ -20,9 +23,29 @@ class ToDoAdapter(
     private val week: String,
     private val status: Int,
     private val feel: Int
+
 ) : RecyclerView.Adapter<ToDoViewHolder>() {
+    private var selectedEmotion: Int = 0
+    private lateinit var emotionListener: AdapterView.OnItemSelectedListener
+    private lateinit var emotionsAdapter: ArrayAdapter<String>
+
+    @SuppressLint("ResourceType")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDoViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_todo, parent, false)
+//        emotionsAdapter = ArrayAdapter(parent.context, R.array.emotion)
+        // 리사이클러뷰 안에 감정 콤보박스에 데이터 연결
+        emotionsAdapter = ArrayAdapter(parent.context, android.R.layout.simple_spinner_item,
+            parent.context.resources.getStringArray(R.array.emotion))
+        emotionsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        emotionListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                selectedEmotion = position
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
         return ToDoViewHolder(view)
     }
 
@@ -34,6 +57,9 @@ class ToDoAdapter(
 
     override fun onBindViewHolder(holder: ToDoViewHolder, position: Int) {
         val todo = todos[position]
+        holder.emotionBox.adapter = emotionsAdapter
+        holder.emotionBox.onItemSelectedListener = emotionListener
+        holder.emotionBox.setSelection(todo.emotion)
 
         // Initialize progress bar
         progressBar.max = todos.size

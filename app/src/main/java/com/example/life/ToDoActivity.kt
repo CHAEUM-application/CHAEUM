@@ -3,10 +3,7 @@ package com.example.life
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,12 +11,14 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
 class ToDoActivity : AppCompatActivity() {
 
     private lateinit var adapter: ToDoAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressBar: ProgressBar
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_todo)
@@ -78,7 +77,7 @@ class ToDoActivity : AppCompatActivity() {
                 result?.let { todoDtos ->
                     for(dto in todoDtos) {
                         if(dto.year == year && dto.month == month && dto.week == week) {
-                            val todo = ToDo(0, dto.text, dto.status == 1)
+                            val todo = ToDo(0, 0, dto.text, dto.status == 1)
                             todoList.add(todo)
                         }
                     }
@@ -100,6 +99,8 @@ class ToDoActivity : AppCompatActivity() {
                 adapter.addTodo(
                     ToDo(
                         adapter.itemCount + 1,
+                        // 감정의 default는 0으로 처리 나머지 감정을 1~5로 설정
+                        0, 
                         "",
                         false
                     )
