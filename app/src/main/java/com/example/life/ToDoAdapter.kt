@@ -3,11 +3,13 @@ package com.example.life
 import android.annotation.SuppressLint
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.EditText
 import android.widget.ProgressBar
 import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
@@ -17,7 +19,7 @@ import retrofit2.Response
 class ToDoAdapter(
     val todos: MutableList<ToDo>,
     private val progressBar: ProgressBar,
-    private val id: String,
+    private val u_id: String,
     private val year: String,
     private val month: String,
     private val week: String,
@@ -32,14 +34,31 @@ class ToDoAdapter(
     @SuppressLint("ResourceType")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDoViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_todo, parent, false)
-//        emotionsAdapter = ArrayAdapter(parent.context, R.array.emotion)
+        val viewHolder = ToDoViewHolder(view)
         // 리사이클러뷰 안에 감정 콤보박스에 데이터 연결
         emotionsAdapter = ArrayAdapter(parent.context, android.R.layout.simple_spinner_item,
             parent.context.resources.getStringArray(R.array.emotion))
         emotionsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         emotionListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                selectedEmotion = position
+            // 감정 콤보 박스가 선택될 시
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+
+                selectedEmotion = pos
+                val text = viewHolder.itemView.findViewById<EditText>(R.id.editText).text.toString()
+
+                RetrofitClient.api.updTodoInfo(u_id,year, month, week, text, text, 5, selectedEmotion).enqueue(object : Callback<Unit>{
+                    override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                        // 감정 변경 완료
+                        Log.d("TAG", "넘어감")
+                        Log.d("TAG", text)
+                        Log.d("TAG", pos.toString())
+                        return
+                    }
+
+                    override fun onFailure(call: Call<Unit>, t: Throwable) {
+                        return
+                    }
+                })
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -90,7 +109,7 @@ class ToDoAdapter(
                 r_status = 0
             }
             val text = holder.editText.text.toString()
-            RetrofitClient.api.updTodoInfo(id, year, month, week, text, text, r_status, feel)
+            RetrofitClient.api.updTodoInfo(u_id, year, month, week, text, text, r_status, feel)
                 .enqueue(object : Callback<Unit> {
                     override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
                         // status 1로 변경 완료
@@ -138,7 +157,7 @@ class ToDoAdapter(
                 if (req_text == res_text) {
                     return@setOnClickListener
                 } else {
-                    RetrofitClient.api.updTodoInfo(id, year, month, week, req_text, res_text, -1, feel)
+                    RetrofitClient.api.updTodoInfo(u_id, year, month, week, req_text, res_text, -1, feel)
                         .enqueue(object : Callback<Unit> {
                             override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
                                 // text 변경 완료

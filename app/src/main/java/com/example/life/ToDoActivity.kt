@@ -77,7 +77,7 @@ class ToDoActivity : AppCompatActivity() {
                 result?.let { todoDtos ->
                     for(dto in todoDtos) {
                         if(dto.year == year && dto.month == month && dto.week == week) {
-                            val todo = ToDo(0, 0, dto.text, dto.status == 1)
+                            val todo = ToDo(0, dto.feel, dto.text, dto.status == 1)
                             todoList.add(todo)
                         }
                     }

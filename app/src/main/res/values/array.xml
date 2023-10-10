@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--
-    1.** 기쁨**: 즐겁고 행복한 감정을 느낄 때 하는 일
-    2.** 슬픔**: 우울하고 슬픈 감정을 느낄 때 하는 일
-    3.** 분노**: 화가 나고 불쾌한 감정을 느낄 때 하는 일
-    4.** 즐거움**: 유쾌하고 재미있는 감정을 느낄 때 하는 일
-    5.** 우울함**: 기분이 가라앉고 침체된 감정을 느낄 때 하는 일
+    1~5에서 기분이 좋은 것(5) 부터 제일 안좋은 1까지
     -->
     <string-array name="emotion">
-        <item>기쁨</item>
-        <item>슬픔</item>
-        <item>즐거움</item>
-        <item>분노</item>
-        <item>우울함</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
     </string-array>
 </resources>

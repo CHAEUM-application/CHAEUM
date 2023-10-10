@@ -13,13 +13,13 @@
 
     <Spinner
             android:id="@+id/emotionBox"
-            android:layout_width="66dp"
+            android:layout_width="84dp"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
 
     <EditText
             android:id="@+id/editText"
-            android:layout_width="178dp"
+            android:layout_width="224dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:inputType="text"
