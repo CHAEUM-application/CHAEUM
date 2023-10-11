@@ -24,16 +24,25 @@ class ToDoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_todo)
 
         val selectedYear = intent.getIntExtra("selectedYear", -1)
-        val selectedMonth = intent.getStringExtra("selectedMonth")
+        val selectedMonthString = intent.getStringExtra("selectedMonth")
         val selectedWeek = intent.getIntExtra("selectedWeek", -1)
+
+        // 월 이름을 숫자로 매핑
+        val monthMap = mapOf(
+            "January" to 1, "February" to 2, "March" to 3, "April" to 4,
+            "May" to 5, "June" to 6, "July" to 7, "August" to 8,
+            "September" to 9, "October" to 10, "November" to 11, "December" to 12
+        )
+
+        val selectedMonth = monthMap[selectedMonthString] ?: 0
 
         val id = intent.getStringExtra("id")
         val year = selectedYear.toString()
-        val month = selectedMonth.toString()
+        val month = selectedMonthString.toString()
         val week = selectedWeek.toString()
 
         val dateTextView = findViewById<TextView>(R.id.dateTextView)
-        dateTextView.text = "Selected Year: $selectedYear, Month: $selectedMonth, Week: $selectedWeek, id: $id"
+        dateTextView.text = "$selectedYear" + "년 $selectedMonth" + "월 $selectedWeek" + "주차"
 
         progressBar = findViewById(R.id.progressBar)
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
