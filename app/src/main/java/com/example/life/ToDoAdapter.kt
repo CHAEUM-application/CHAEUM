@@ -145,6 +145,7 @@ class ToDoAdapter(
                 res_text = holder.editText.text.toString()
                 holder.editText.isEnabled = true
                 holder.doneButton.text = "ENTER"
+                holder.doneButton.isSelected = false
 
             }
             // -1일대는 텍스트 수정 불가, 버튼 = modify
@@ -154,6 +155,9 @@ class ToDoAdapter(
                 req_text = holder.editText.text.toString()
                 holder.editText.isEnabled = false
                 holder.doneButton.text = "MODIFY"
+                holder.doneButton.isSelected = true
+
+
                 if (req_text == res_text) {
                     return@setOnClickListener
                 } else {

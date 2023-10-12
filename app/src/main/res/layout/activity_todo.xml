@@ -1,64 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#E6181818"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@android:color/white"
+              android:orientation="vertical">
 
     <TextView
-        android:id="@+id/dateTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Selected Date: "
-        android:textAlignment="center"
-        android:textColor="#B3FFFFFF" />
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:id="@+id/textView3"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+        <TextView
+                android:text="        Todo List"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:layout_width="342dp"
+                android:layout_height="70dp"
+                android:id="@+id/todoView"
+                android:gravity="center"/>
+        <Button
+                android:id="@+id/backButton"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:drawableEnd="@drawable/backpage_resize"
+                android:background="@android:color/white"
+                android:textColor="#B3FFFFFF"
+                style="?android:attr/borderlessButtonStyle"/>
+    </LinearLayout>
+
+    <TextView
+            android:id="@+id/dateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Selected Date: "
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:textColor="#B3000000"
+            android:layout_marginLeft="10dp"/>
 
     <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="12dp"
-        android:indeterminate="false"
-        android:maxHeight="12dp"
-        android:minHeight="12dp" />
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:scaleY="9"
+            android:progressTint="#C8E6C9"
+            android:progressBackgroundTint="#C7CAC7"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#4D181818"
-        android:scrollbars="vertical" />
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:scrollbars="vertical"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:gravity="center_horizontal"
+            android:background="@android:color/white"
+            android:orientation="horizontal">
 
         <Button
-            android:id="@+id/addButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#3D3F41"
-            android:text="Add ToDo"
-            android:textColor="#B3FFFFFF" />
+                android:id="@+id/addButton"
+                android:layout_width="140dp"
+                android:layout_height="70dp"
+                android:text="작성하기"
+                android:textSize="20dp"
+                android:textColor="#737373"
+                android:background="@android:color/white"
+                android:drawableRight="@drawable/addtodo_resize"
+                style="?android:attr/borderlessButtonStyle"/>
 
+        <TextView
+                android:layout_height="wrap_content"
+                android:id="@+id/textView4"
+                android:layout_width="40dp"/>
         <Button
-            android:id="@+id/removeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#3D3F41"
-            android:text="Remove ToDo"
-            android:textColor="#B3FFFFFF" />
-
-        <Button
-            android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#3D3F41"
-            android:text="Back"
-            android:textColor="#B3FFFFFF" />
+                android:id="@+id/removeButton"
+                android:layout_width="135dp"
+                android:layout_height="70dp"
+                android:background="@android:color/white"
+                android:text="삭제하기"
+                android:textSize="20dp"
+                android:textColor="#737373"
+                android:drawableRight="@drawable/rmvtodo_resize"
+                style="?android:attr/borderlessButtonStyle"/>
 
     </LinearLayout>
 </LinearLayout>
