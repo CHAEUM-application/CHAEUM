@@ -1,19 +1,25 @@
 package com.example.life
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Typeface
 import android.icu.util.Calendar
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.time.Year
 
 class MainActivity : AppCompatActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.lifepage)
@@ -41,6 +47,14 @@ class MainActivity : AppCompatActivity() {
         } else {
                 return
                 //updateUI(name, birthYear, id)
+        }
+
+        val enterButton = findViewById<Button>(R.id.enterBtn)
+        enterButton.setOnClickListener {
+            val intent = Intent(this, YearActivity::class.java)
+            intent.putExtra("id", id)
+            intent.putExtra("year", Year.now().value)
+            startActivity(intent)
         }
 
         val homeButton = findViewById<Button>(R.id.homeBtn)
