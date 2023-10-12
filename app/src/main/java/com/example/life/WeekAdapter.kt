@@ -19,9 +19,15 @@ class WeekAdapter(private val numberOfWeeks: Int,
                   private val month: String,
                   private val id: String) : RecyclerView.Adapter<WeekViewHolder>() {
 
-    private val colorStart = Color.parseColor("#eafaf1")  // 0%
-    private val colorMid = Color.parseColor("#97e7b9")   // 50%
-    private val colorEnd = Color.parseColor("#44d580")   // 100%
+    // 0~1 sad(gray) 1~2 soso(beige) 2~3 good(green) 3~4 happy(pink)
+//    private val sadColorStart = Color.parseColor("#")  // 0%
+//    private val sadColorEnd = Color.parseColor("#a4928e")   // 100%
+//    private val sosoColorStart = Color.parseColor("#")  // 0%
+//    private val sosoColorEnd = Color.parseColor("#dec8b0")   // 100%
+    private val goodColorStart = Color.parseColor("#f0f9f3")  // 0%
+    private val goodColorEnd = Color.parseColor("#8dcfa8")   // 100%
+//    private val happyColorStart = Color.parseColor("#")  // 0%
+//    private val happyColorEnd = Color.parseColor("#e9a69b")   // 100%
     private val colorEvaluator = ArgbEvaluator()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeekViewHolder {
@@ -62,13 +68,7 @@ class WeekAdapter(private val numberOfWeeks: Int,
     override fun getItemCount(): Int = numberOfWeeks
 
     private fun getProgressColor(progress: Float): Int {
-        return if (progress < 0.5) {
-            // For progress from 0% to 50%, interpolate between colorStart (red) and colorMid (yellow)
-            colorEvaluator.evaluate(progress * 2, colorStart, colorMid) as Int
-        } else {
-            // For progress from 50% to 100%, interpolate between colorMid (yellow) and colorEnd (green)
-            colorEvaluator.evaluate((progress - 0.5f) * 2, colorMid, colorEnd) as Int
-        }
+        return colorEvaluator.evaluate(progress,goodColorStart,goodColorEnd) as Int
     }
 
     fun refreshData() {

@@ -1,7 +1,6 @@
 package com.example.life
 
 import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
@@ -14,7 +13,7 @@ class MonthAdapter(private val year: Int, private val id: String) : RecyclerView
     private val weeksPerMonth = listOf(4, 4, 5, 4, 5, 4, 5, 5, 4, 5, 4, 5)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MonthViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_month, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_monthlist, parent, false)
         val viewHolder = MonthViewHolder(view)
         return viewHolder
     }

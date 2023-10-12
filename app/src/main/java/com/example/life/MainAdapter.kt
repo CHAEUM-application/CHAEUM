@@ -47,7 +47,7 @@ class MainAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_year, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_month, parent, false)
         return MainViewHolder(view)
     }
 
