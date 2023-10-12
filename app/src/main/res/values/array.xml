@@ -4,11 +4,10 @@
     1~5에서 기분이 좋은 것(5) 부터 제일 안좋은 1까지
     -->
     <string-array name="emotion">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
+        <item>😭</item>
+        <item>🥺</item>
+        <item>😐</item>
+        <item>🙂</item>
+        <item>😆</item>
     </string-array>
 </resources>
