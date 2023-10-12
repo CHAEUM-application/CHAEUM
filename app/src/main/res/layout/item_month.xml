@@ -12,19 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autoText="false"
-        android:background="#2F2F2F"
+        android:background="@android:color/white"
         android:padding="8dp"
-        android:textColor="#B3FFFFFF"
-        android:textColorHighlight="#B3FFFFFF"
-        android:textColorHint="#B3FFFFFF"
-        android:textColorLink="#B3FFFFFF"
         android:textSize="18sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/weeksRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#2F2F2F"
+        android:background="@android:color/white"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:ignore="DuplicateIds" />
