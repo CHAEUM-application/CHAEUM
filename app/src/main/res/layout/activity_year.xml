@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
 
     <Button
         android:id="@+id/backButton"
@@ -11,27 +12,90 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="3dp"
         android:layout_marginEnd="10dp"
-        android:backgroundTint="#3D3F41"
-        android:text="B"
-        android:textColor="#B3FFFFFF" />
+        android:background="@drawable/backpage_resize"/>
 
     <TextView
         android:id="@+id/yearTextView"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
-        android:background="#E6181818"
+        android:background="@android:color/white"
         android:gravity="center_horizontal"
         android:textAlignment="center"
-        android:textColor="#B3FFFFFF"
         android:textSize="24sp"
         android:textStyle="bold" />
 
+    <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/tagetList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/yearTextView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+    >
+        <TextView
+                android:text="연간 목표"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView8"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <Button
+                    android:text="O"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/yearBtn1"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/yearTarget1"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <Button
+                    android:text="O"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/yearBtn2"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/yearTarget2"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <Button
+                    android:text="O"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/yearBtn3"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/yearTarget3"/>
+        </LinearLayout>
+        <TextView
+                android:text="목표 달성 수 표시"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/targetCheck"/>
+
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/yearTextView"
-        android:background="#E6181818" />
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/tagetList"
+    />
 
 </RelativeLayout>
