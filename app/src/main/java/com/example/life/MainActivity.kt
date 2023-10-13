@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
 import retrofit2.Callback
@@ -75,7 +76,8 @@ class MainActivity : AppCompatActivity() {
         userBirthday.text = "${birthYear} ~ ${birthYear + 90}"
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.layoutManager = GridLayoutManager(this@MainActivity, 10) // Assume 10 items per row
+        recyclerView.layoutManager = LinearLayoutManager(this)
+//        recyclerView.layoutManager = GridLayoutManager(this@MainActivity, 10) // Assume 10 items per row
         recyclerView.adapter = MainAdapter(birthYear, id, context = this) // Pass context here
     }
 }
