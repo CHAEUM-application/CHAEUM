@@ -29,9 +29,9 @@ class MainAdapter(
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         val year = birthYear + position
         val age = position+1
-        holder.monthText.text = "$age"+"살"
+        holder.monthText.text = "$age"
         holder.monthRecyler.layoutManager = LinearLayoutManager(holder.itemView.context, LinearLayoutManager.HORIZONTAL, false)
-        holder.monthRecyler.adapter = MonthAdapter(year, id, holder.itemView.context)
+        holder.monthRecyler.adapter = MonthAdapter(year, age, id, holder.itemView.context)
     }
 
 
