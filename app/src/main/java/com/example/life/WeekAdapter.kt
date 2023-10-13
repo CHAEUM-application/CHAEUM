@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 import android.animation.ArgbEvaluator
 import android.annotation.SuppressLint
+import android.util.Log
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,7 +27,7 @@ class WeekAdapter(private val numberOfWeeks: Int,
     private val sosoColorEnd = Color.parseColor("#dec8b0")   // 100%
     private val goodColorStart = Color.parseColor("#f0f9f3")  // 0%
     private val goodColorEnd = Color.parseColor("#8dcfa8")   // 100%
-    private val happyColorStart = Color.parseColor("f9eeea#")  // 0%
+    private val happyColorStart = Color.parseColor("#f9eeea")  // 0%
     private val happyColorEnd = Color.parseColor("#e9a69b")   // 100%
     private val colorEvaluator = ArgbEvaluator()
 
@@ -52,10 +53,15 @@ class WeekAdapter(private val numberOfWeeks: Int,
                 val weekTodos = todos.filter {
                     it.year == year.toString() && it.month == month && it.week == (position + 1).toString()
                 }
+                val weekFeelValues = weekTodos.mapNotNull { it.feel.toFloat() }
+                val weekFeelAverage = if (weekFeelValues.isNotEmpty()) weekFeelValues.average() else 0.0
+
+                Log.d("TAG",month)
+                Log.d("TAG",weekFeelAverage.toString())
                 val doneTodos = weekTodos.count { it.status == 1 }
                 val progress = if (weekTodos.isNotEmpty()) doneTodos / weekTodos.size.toFloat() else 0f
 
-                val color = getProgressColor(progress)
+                val color = getProgressColor(progress, weekFeelAverage)
                 holder.weekView.setBackgroundColor(color)
             }
 
@@ -67,9 +73,14 @@ class WeekAdapter(private val numberOfWeeks: Int,
 
     override fun getItemCount(): Int = numberOfWeeks
 
-    private fun getProgressColor(progress: Float): Int {
-        return colorEvaluator.evaluate(progress,goodColorStart,goodColorEnd) as Int
-    }
+    private fun getProgressColor(progress: Float, feelAvg: Double): Int {
+        return when {
+                feelAvg > 0.0f && feelAvg <= 1.0f -> colorEvaluator.evaluate(progress,sadColorStart,sadColorEnd) as Int
+                feelAvg > 1.0f && feelAvg <= 2.0f -> colorEvaluator.evaluate(progress,sosoColorStart,sosoColorEnd) as Int
+                feelAvg > 2.0f && feelAvg <= 3.0f -> colorEvaluator.evaluate(progress,goodColorStart,goodColorEnd) as Int
+                feelAvg > 3.0f && feelAvg <= 4.0f -> colorEvaluator.evaluate(progress,happyColorStart,happyColorEnd) as Int
+            else -> return goodColorStart }
+        }
 
     fun refreshData() {
         notifyDataSetChanged()
