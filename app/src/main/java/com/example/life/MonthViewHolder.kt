@@ -5,5 +5,5 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class MonthViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    val monthview: View = view.findViewById(R.id.monthtext)
+    val monthview: View = view.findViewById(R.id.yearView)
 }

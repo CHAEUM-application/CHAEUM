@@ -31,7 +31,7 @@ class MainAdapter(
         val age = position+1
         holder.monthText.text = "$age"+"살"
         holder.monthRecyler.layoutManager = LinearLayoutManager(holder.itemView.context, LinearLayoutManager.HORIZONTAL, false)
-        holder.monthRecyler.adapter = MonthAdapter(year, id, holder.itemView.context)
+        holder.monthRecyler.adapter = MonthAdapter(year, age, id, holder.itemView.context)
     }
 
 
