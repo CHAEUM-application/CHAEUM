@@ -1,0 +1,24 @@
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/white">
+
+    <TextView
+            android:text="월 표시"
+            android:textColor="@android:color/black"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:id="@+id/monthtext"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:id="@+id/monthRecycler"/>
+
+</LinearLayout>
