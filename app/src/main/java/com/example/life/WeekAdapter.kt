@@ -19,15 +19,15 @@ class WeekAdapter(private val numberOfWeeks: Int,
                   private val month: String,
                   private val id: String) : RecyclerView.Adapter<WeekViewHolder>() {
 
-    // 0~1 sad(gray) 1~2 soso(beige) 2~3 good(green) 3~4 happy(pink)
-//    private val sadColorStart = Color.parseColor("#")  // 0%
-//    private val sadColorEnd = Color.parseColor("#a4928e")   // 100%
-//    private val sosoColorStart = Color.parseColor("#")  // 0%
-//    private val sosoColorEnd = Color.parseColor("#dec8b0")   // 100%
+    // 0~1 sad(gray) 1~2 soso(orange) 2~3 good(green) 3~4 happy(pink)
+    private val sadColorStart = Color.parseColor("#f5f3f2")  // 0%
+    private val sadColorEnd = Color.parseColor("#a4928e")   // 100%
+    private val sosoColorStart = Color.parseColor("#fdf7f1")  // 0%
+    private val sosoColorEnd = Color.parseColor("#dec8b0")   // 100%
     private val goodColorStart = Color.parseColor("#f0f9f3")  // 0%
     private val goodColorEnd = Color.parseColor("#8dcfa8")   // 100%
-//    private val happyColorStart = Color.parseColor("#")  // 0%
-//    private val happyColorEnd = Color.parseColor("#e9a69b")   // 100%
+    private val happyColorStart = Color.parseColor("f9eeea#")  // 0%
+    private val happyColorEnd = Color.parseColor("#e9a69b")   // 100%
     private val colorEvaluator = ArgbEvaluator()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeekViewHolder {
