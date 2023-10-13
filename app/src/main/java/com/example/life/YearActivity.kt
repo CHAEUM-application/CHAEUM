@@ -10,14 +10,11 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.time.Year
 
 class YearActivity : AppCompatActivity() {
 
-    private lateinit var adapter: MonthAdapter  // Add this line
+    private lateinit var adapter: MonthListAdapter  // Add this line
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,9 +60,9 @@ class YearActivity : AppCompatActivity() {
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = id?.let { MonthAdapter(selectedYear, it) }
+        recyclerView.adapter = id?.let { MonthListAdapter(selectedYear, it) }
 
-        adapter = MonthAdapter(selectedYear, id ?: "")  // Modify this line
+        adapter = MonthListAdapter(selectedYear, id ?: "")  // Modify this line
         recyclerView.adapter = adapter
 
         val backButton = findViewById<Button>(R.id.backButton)
