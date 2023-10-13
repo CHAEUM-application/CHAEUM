@@ -54,7 +54,7 @@ class MonthAdapter(
                 val monthStatusAverage = if (monthBlock.isNotEmpty()) monthStatusValues.average() else 0.0
 
                 val monthFeelValues = monthBlock.mapNotNull { it.feel.toFloat() }
-                val monthFeelAverage = if (monthFeelValues.isNotEmpty()) monthFeelValues.average() else 0.0
+                val monthFeelAverage = if (monthFeelValues.isNotEmpty()) monthFeelValues.average() else 10.0
 
 
                 val color = getProgressColor(monthStatusAverage,monthFeelAverage)
@@ -71,7 +71,7 @@ class MonthAdapter(
 
     private fun getProgressColor(statusAvg: Double, feelAvg: Double): Int {
         return when {
-            feelAvg > 0.0f && feelAvg <= 1.0f -> colorEvaluator.evaluate(statusAvg.toFloat(),sadColorStart,sadColorEnd) as Int
+            feelAvg >= 0.0f && feelAvg <= 1.0f -> colorEvaluator.evaluate(statusAvg.toFloat(),sadColorStart,sadColorEnd) as Int
             feelAvg > 1.0f && feelAvg <= 2.0f -> colorEvaluator.evaluate(statusAvg.toFloat(),sosoColorStart,sosoColorEnd) as Int
             feelAvg > 2.0f && feelAvg <= 3.0f -> colorEvaluator.evaluate(statusAvg.toFloat(),goodColorStart,goodColorEnd) as Int
             feelAvg > 3.0f && feelAvg <= 4.0f -> colorEvaluator.evaluate(statusAvg.toFloat(),happyColorStart,happyColorEnd) as Int
