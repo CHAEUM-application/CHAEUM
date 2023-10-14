@@ -44,13 +44,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             <Button
-                    android:text="O"
+                    android:background="@drawable/btn_target"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/yearBtn1"/>
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:imeOptions="actionDone"
                     android:id="@+id/yearTarget1"/>
         </LinearLayout>
         <LinearLayout
@@ -58,13 +61,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             <Button
-                    android:text="O"
+                    android:background="@drawable/btn_target"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/yearBtn2"/>
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:imeOptions="actionDone"
                     android:id="@+id/yearTarget2"/>
         </LinearLayout>
         <LinearLayout
@@ -72,13 +78,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             <Button
-                    android:text="O"
+                    android:background="@drawable/btn_target"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/yearBtn3"/>
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:imeOptions="actionDone"
                     android:id="@+id/yearTarget3"/>
         </LinearLayout>
         <TextView
