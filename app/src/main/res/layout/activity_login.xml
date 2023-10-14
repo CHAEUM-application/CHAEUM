@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".LoginActivity"
+        android:background="@color/white">
+
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="15dp"
+    >
+
+        <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="140dp"
+                android:layout_height="130dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="55dp"
+                android:src="@drawable/logo2" />
+
+        <TextView
+                android:id="@+id/text_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/gmarketbold"
+                android:text="채움"
+                android:textColor="@color/title_green"
+                android:textSize="38sp" />
+
+        <TextView
+                android:id="@+id/text_logo2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/gmarketmedium"
+                android:text="삶의 의미를 채우다"
+                android:textColor="@color/title_green"
+                android:textSize="16sp" />
+
+        <EditText
+                android:id="@+id/edit_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="55dp"
+                android:backgroundTint="@color/light_gray"
+                android:hint="아이디를 입력하세요"
+                android:paddingBottom="15dp"
+                android:textSize="14sp"
+                android:maxLines="1"
+                android:inputType="text"
+                android:theme="@style/EditTheme"
+        />
+
+        <EditText
+                android:id="@+id/edit_pw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/light_gray"
+                android:hint="비밀번호를 입력하세요"
+                android:maxLines="1"
+                android:inputType="textPassword"
+                android:paddingBottom="15dp"
+                android:textSize="14sp"
+                android:theme="@style/EditTheme"
+        />
+
+        <Button
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/border"
+                android:backgroundTint="@color/title_green"
+                android:text="로그인"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="14sp"/>
+
+
+        <Button
+                android:id="@+id/btn_join"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/whiteborder"
+                android:text="회원가입"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+               />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+
+            <RadioButton
+                    android:id="@+id/remain_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/title_green"
+                    android:text="로그인 상태 유지"
+                    android:textSize="13sp"
+                    android:layout_marginLeft="-4dp"/>
+
+            <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+            <TextView
+                    android:id="@+id/find_idpw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loginpw"
+                    android:textSize="13sp"
+            />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

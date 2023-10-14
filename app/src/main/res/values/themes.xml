@@ -3,4 +3,17 @@
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- 기타 테마 속성 설정 -->
     </style>
+
+    <style name="EditTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">@color/light_gray</item>
+    </style>
+
+    <style name="AppTheme.NumberPicker" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColorPrimary">@color/dark_gray</item>
+        <item name="colorControlNormal">@color/light_gray</item>
+        <item name="android:textColorHighlight">@color/dark_gray</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+
 </resources>

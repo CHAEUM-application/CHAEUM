@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E6181818">
+    android:background="@color/white"
+    tools:context=".LoginActivity"
+>
 
     <TextView
         android:id="@+id/textView2"
@@ -13,10 +15,10 @@
         android:layout_marginTop="150dp"
         android:gravity="center"
         android:padding="16dp"
-        android:text="CHAEUM"
-        android:textColor="#B3FFFFFF"
+        android:text="채움"
+        android:textColor="@color/title_green"
         android:textSize="50sp"
-        android:textStyle="bold"
+        android:fontFamily=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
