@@ -23,6 +23,54 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        setContentView(R.layout.lifepage)
+//
+//        var birthYear = intent.getIntExtra("year", 0)
+//        var name = intent.getStringExtra("name")
+//        val id = intent.getStringExtra("id")
+//
+//        if (id != null) {
+//            RetrofitClient.api.getUserID(id).enqueue(object: Callback<UsersDTO>{
+//                override fun onResponse(call: Call<UsersDTO>, response: Response<UsersDTO>) {
+//                    val result = response.body()
+//                    name = result?.c_name ?: name
+//                    val calendar = Calendar.getInstance()
+//                    calendar.time = result?.c_date
+//                    birthYear = calendar.get(Calendar.YEAR)
+//
+//                    updateUI(name, birthYear, id)
+//                }
+//
+//                override fun onFailure(call: Call<UsersDTO>, t: Throwable) {
+//                    updateUI(name, birthYear, id)
+//                }
+//            })
+//        } else {
+//                return
+//            if (id != null) {
+//                updateUI(name, birthYear, id)
+//            }
+//        }
+//
+//        val enterButton = findViewById<Button>(R.id.enterBtn)
+//        enterButton.setOnClickListener {
+//            val intent = Intent(this, YearActivity::class.java)
+//            intent.putExtra("id", id)
+//            intent.putExtra("year", Year.now().value)
+//            startActivity(intent)
+//        }
+//
+//        val homeButton = findViewById<Button>(R.id.homeBtn)
+//        homeButton.setOnClickListener {
+//            val intent = Intent(this, StartActivity::class.java)
+//            startActivity(intent)
+//            finish()
+//        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onResume() {
+        super.onResume()
         setContentView(R.layout.lifepage)
 
         var birthYear = intent.getIntExtra("year", 0)
@@ -46,8 +94,10 @@ class MainActivity : AppCompatActivity() {
                 }
             })
         } else {
-                return
-                //updateUI(name, birthYear, id)
+            return
+            if (id != null) {
+                updateUI(name, birthYear, id)
+            }
         }
 
         val enterButton = findViewById<Button>(R.id.enterBtn)
@@ -65,6 +115,7 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
     }
+
     private fun updateUI(name: String?, birthYear: Int, id: String) {
         val userBirthday = findViewById<TextView>(R.id.userBirthday)
         val userName = findViewById<TextView>(R.id.userName)
