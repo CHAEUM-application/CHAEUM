@@ -55,6 +55,8 @@
                 android:maxLines="1"
                 android:inputType="text"
                 android:theme="@style/EditTheme"
+                android:fontFamily="@font/nanumneoregular"
+
         />
 
         <EditText
@@ -79,8 +81,8 @@
                 android:background="@drawable/border"
                 android:backgroundTint="@color/title_green"
                 android:text="로그인"
-                android:textStyle="bold"
                 android:textColor="@color/white"
+                android:fontFamily="@font/nanumneobold"
                 android:textSize="14sp"/>
 
 
@@ -91,6 +93,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/whiteborder"
                 android:text="회원가입"
+                android:fontFamily="@font/nanumneoregular"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                />
@@ -109,6 +112,7 @@
                     android:buttonTint="@color/title_green"
                     android:text="로그인 상태 유지"
                     android:textSize="13sp"
+                    android:fontFamily="@font/nanumneoregular"
                     android:layout_marginLeft="-4dp"/>
 
             <View
@@ -121,7 +125,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/loginpw"
+                    android:fontFamily="@font/nanumneoregular"
                     android:textSize="13sp"
+
             />
 
         </LinearLayout>

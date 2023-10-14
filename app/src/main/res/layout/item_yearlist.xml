@@ -9,8 +9,10 @@
             android:text="월 표시"
             android:background="@android:color/white"
             android:gravity="center"
+            android:fontFamily="@font/samsungonebold"
             android:layout_width="30dp"
             android:layout_height="match_parent"
+            android:textSize="15sp"
             android:id="@+id/monthtext"/>
 
     <androidx.recyclerview.widget.RecyclerView

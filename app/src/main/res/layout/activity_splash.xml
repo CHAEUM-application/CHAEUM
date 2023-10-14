@@ -55,6 +55,7 @@
             android:textColor="@color/title_green"
             android:textSize="15dp"
             android:paddingLeft="30dp"
+            android:fontFamily="@font/nanumregular"
             app:layout_constraintStart_toStartOf="@+id/progressBar"
             app:layout_constraintBottom_toTopOf="@+id/progressBar"/>
 

@@ -1,6 +1,7 @@
 package com.example.life
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -86,11 +87,11 @@ class SignUpActivity : AppCompatActivity() {
                     val m = p.matcher(s.toString())
                     if (!m.matches()) {
                         //0xAARRGGBB
-                        checkPW.setTextColor(-0x5510b7b6)
+                        checkPW.setTextColor(-0x5510b7b6)  //red
                         checkPW.setText("영문,숫자 포함 10자이내")
                         validatePW = false
                     } else {
-                        //checkPW.setTextColor(-0x919192)
+                        checkPW.setTextColor(Color.parseColor("#377E47"))  //green
                         checkPW.setText("사용 가능한 비밀번호입니다.")
                         validatePW = true
                     }
@@ -178,11 +179,6 @@ class SignUpActivity : AppCompatActivity() {
         }
         backButton.setOnClickListener {
             onBackPressed()
-        }
-
-        fun checkID(id:String){
-
-
         }
 
     }
