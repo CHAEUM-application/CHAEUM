@@ -35,7 +35,7 @@
             android:layout_marginRight="10dp"
     >
         <TextView
-                android:text="연간 목표"
+                android:text="연간 목표 : 3개의 목표를 작성하세요."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView8"/>

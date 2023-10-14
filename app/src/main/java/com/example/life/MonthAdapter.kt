@@ -1,6 +1,7 @@
 package com.example.life
 
 import android.animation.ArgbEvaluator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.os.Build
@@ -38,18 +39,22 @@ class MonthAdapter(
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    override fun onBindViewHolder(holder: MonthViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MonthViewHolder, @SuppressLint("RecyclerView") position: Int) {
         RetrofitClient.api.getTodoID(id).enqueue(object :Callback<List<ToDoDTO>>{
             override fun onResponse(call: Call<List<ToDoDTO>>, response: Response<List<ToDoDTO>>) {
                 val months = response.body() ?: listOf()
+                val monthNames = arrayOf("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
                 val monthBlock = months.filter {
-                    it.year == year.toString()
+                    val currentPosition = position + 1
+                    val currentMonth = monthNames.getOrNull(currentPosition - 1)
+                    Log.d("Filter", "Position: $currentPosition")
+                    it.year == year.toString() && it.month == currentMonth.toString()
                 }
                 val monthStatusValues = monthBlock.mapNotNull { it.status.toFloat() }
                 val monthStatusAverage = if (monthBlock.isNotEmpty()) monthStatusValues.average() else 0.0
 
                 val monthFeelValues = monthBlock.mapNotNull { it.feel.toFloat() }
-                val monthFeelAverage = if (monthFeelValues.isNotEmpty()) monthFeelValues.average() else 0.0
+                val monthFeelAverage = if (monthFeelValues.isNotEmpty()) monthFeelValues.average() else 10.0
 
 
                 val color = getProgressColor(monthStatusAverage,monthFeelAverage)
@@ -66,7 +71,7 @@ class MonthAdapter(
 
     private fun getProgressColor(statusAvg: Double, feelAvg: Double): Int {
         return when {
-            feelAvg > 0.0f && feelAvg <= 1.0f -> colorEvaluator.evaluate(statusAvg.toFloat(),sadColorStart,sadColorEnd) as Int
+            feelAvg >= 0.0f && feelAvg <= 1.0f -> colorEvaluator.evaluate(statusAvg.toFloat(),sadColorStart,sadColorEnd) as Int
             feelAvg > 1.0f && feelAvg <= 2.0f -> colorEvaluator.evaluate(statusAvg.toFloat(),sosoColorStart,sosoColorEnd) as Int
             feelAvg > 2.0f && feelAvg <= 3.0f -> colorEvaluator.evaluate(statusAvg.toFloat(),goodColorStart,goodColorEnd) as Int
             feelAvg > 3.0f && feelAvg <= 4.0f -> colorEvaluator.evaluate(statusAvg.toFloat(),happyColorStart,happyColorEnd) as Int

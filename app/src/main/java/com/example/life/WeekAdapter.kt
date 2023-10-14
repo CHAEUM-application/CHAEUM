@@ -54,7 +54,7 @@ class WeekAdapter(private val numberOfWeeks: Int,
                     it.year == year.toString() && it.month == month && it.week == (position + 1).toString()
                 }
                 val weekFeelValues = weekTodos.mapNotNull { it.feel.toFloat() }
-                val weekFeelAverage = if (weekFeelValues.isNotEmpty()) weekFeelValues.average() else 0.0
+                val weekFeelAverage = if (weekFeelValues.isNotEmpty()) weekFeelValues.average() else 10.0
 
                 Log.d("TAG",month)
                 Log.d("TAG",weekFeelAverage.toString())
@@ -75,7 +75,7 @@ class WeekAdapter(private val numberOfWeeks: Int,
 
     private fun getProgressColor(progress: Float, feelAvg: Double): Int {
         return when {
-                feelAvg > 0.0f && feelAvg <= 1.0f -> colorEvaluator.evaluate(progress,sadColorStart,sadColorEnd) as Int
+                feelAvg >= 0.0f && feelAvg <= 1.0f -> colorEvaluator.evaluate(progress,sadColorStart,sadColorEnd) as Int
                 feelAvg > 1.0f && feelAvg <= 2.0f -> colorEvaluator.evaluate(progress,sosoColorStart,sosoColorEnd) as Int
                 feelAvg > 2.0f && feelAvg <= 3.0f -> colorEvaluator.evaluate(progress,goodColorStart,goodColorEnd) as Int
                 feelAvg > 3.0f && feelAvg <= 4.0f -> colorEvaluator.evaluate(progress,happyColorStart,happyColorEnd) as Int
