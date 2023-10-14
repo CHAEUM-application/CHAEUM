@@ -2,6 +2,7 @@ package com.example.life
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -10,9 +11,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,6 +38,22 @@ class YearActivity : AppCompatActivity() {
         // Find the TextView and set its text to the selected year
         val yearTextView = findViewById<TextView>(R.id.yearTextView)
         yearTextView.text = "$selectedYear" + "년"
+
+        val yearDialog = yearPickerDialog(selectedYear,25){
+            if (it!=selectedYear){
+                Toast.makeText(this@YearActivity, "${it}년 변경완료", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this@YearActivity, YearActivity::class.java).apply{
+                    putExtra("id", id)
+                    Log.d("TAG",it.toString())
+                    putExtra("selectedYear", it)
+                }
+                startActivity(intent)
+                finish()
+            }
+        }
+        yearTextView.setOnClickListener{
+            yearDialog.show(supportFragmentManager, "yearPickerDialog")
+        }
 
         val yearTarget1 = findViewById<EditText>(R.id.yearTarget1)
         val yearTarget2 = findViewById<EditText>(R.id.yearTarget2)
@@ -141,31 +156,7 @@ class YearActivity : AppCompatActivity() {
                             // 여기에서 필요한 작업 수행
                         }
                     }
-//                    val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-//                    imm.hideSoftInputFromWindow(yearTarget1.windowToken, 0)
-//
-//                    yearTarget1.setOnEditorActionListener{textView, action, event ->
-//                        var handled = false
-//                        if (action == EditorInfo.IME_ACTION_DONE){
-//                            val curText = yearTarget1.text.toString()
-//                            RetrofitClient.api.updTodoInfo(id,selectedYear.toString(),"101","0",curText,preText,-1,0).enqueue(object : Callback<Unit>{
-//                                override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
-//                                    Log.d("TAG", "변경 성공")
-//                                    Log.d("TAG", "$id , $selectedYear")
-//                                    Log.d("TAG", "$preText")
-//                                    Log.d("TAG", "$curText")
-//                                }
-//
-//                                override fun onFailure(call: Call<Unit>, t: Throwable) {
-//                                }
-//                            })
-//                            imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY,0)
-//                            yearTarget1.clearFocus()
-//                            handled = true
-//                            Log.d("TAG", "엔터 키 확인")
-//                        }
-//                        handled
-//                    }
+
                     val yearTargets = listOf(yearTarget1, yearTarget2, yearTarget3)
                     val preTexts = Array<String?>(3) { null }
 
@@ -219,7 +210,6 @@ class YearActivity : AppCompatActivity() {
                 }
             })
         }
-
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = id?.let { MonthListAdapter(selectedYear, it) }
