@@ -49,7 +49,7 @@ class ToDoActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progressBar)
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = ToDoAdapter(mutableListOf(), progressBar, feelView, id ?: "", year, month, week, 0, 0)
+        adapter = ToDoAdapter(mutableListOf(), progressBar, feelView, id ?: "", year, month, week, 0, 0,  this@ToDoActivity)
         recyclerView.adapter = adapter
 
         id?.let {
@@ -74,7 +74,7 @@ class ToDoActivity : AppCompatActivity() {
             }
         }
 
-        val backButton = findViewById<Button>(R.id.backButton)
+        val backButton = findViewById<ImageButton>(R.id.backButton)
         backButton.setOnClickListener {
             finish()
         }

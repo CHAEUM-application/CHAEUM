@@ -2,6 +2,6 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
             android:drawable="@drawable/rmv_todo_button"
-            android:width="45dp"
-            android:height="43dp" />
+            android:width="38dp"
+            android:height="36dp" />
 </layer-list>

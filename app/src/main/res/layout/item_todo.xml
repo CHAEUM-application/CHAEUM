@@ -1,6 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="55dp"
     android:background="@android:color/white"
     android:orientation="horizontal"
     android:layout_marginLeft="10dp"
@@ -11,22 +11,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableTint="@android:color/white"
-        android:buttonTint="#C8E6C9"
+        android:buttonTint="@color/light_green"
         android:textColor="#B3FFFFFF" />
 
     <Spinner
             android:id="@+id/emotionBox"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            android:background="@drawable/border2"
+            />
+
 
     <EditText
-            android:id="@+id/editText"
-            android:layout_width="234dp"
+
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:inputType="text"
-            android:textColor="#B3000000"/>
+            android:maxLines="1"
+            android:imeOptions="actionDone"
+            android:id="@+id/editText"
+            android:layout_weight="1"
+            android:textColor="@color/dark_gray"
+            android:theme="@style/EditTheme"
+            android:layout_gravity="center_vertical"
+            android:textSize="16sp"
+            android:layout_marginLeft="3dp"
+            android:backgroundTint="@color/clight_gray"
+            android:fontFamily="@font/nanumregular">
+
+        <requestFocus />
+    </EditText>
+
 
     <Button
             android:id="@+id/doneButton"

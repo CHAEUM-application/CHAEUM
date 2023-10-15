@@ -2,6 +2,6 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
             android:drawable="@drawable/add_todo_button"
-            android:width="45dp"
-            android:height="45dp" />
+            android:width="38dp"
+            android:height="38dp" />
 </layer-list>

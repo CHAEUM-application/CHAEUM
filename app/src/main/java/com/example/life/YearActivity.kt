@@ -84,9 +84,9 @@ class YearActivity : AppCompatActivity() {
         val yearBtn3 = findViewById<ImageButton>(R.id.yearBtn3)
         val targetCheck = findViewById<TextView>(R.id.targetCheck)
 
-        var target1Empty = false
-        var target2Empty = false
-        var target3Empty = false
+        var target1Empty = true
+        var target2Empty = true
+        var target3Empty = true
 
         var missingTargets: MutableList<String>
         val existingTargets = mutableSetOf<String>()

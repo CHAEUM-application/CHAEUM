@@ -1,6 +1,7 @@
 package com.example.life
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import android.text.Editable
@@ -9,7 +10,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,7 +27,8 @@ class ToDoAdapter(
     private val month: String,
     private val week: String,
     private val status: Int,
-    private val feel: Int
+    private val feel: Int,
+    private val context: Context
 
 ) : RecyclerView.Adapter<ToDoViewHolder>() {
     private var selectedEmotion: Int = 0
@@ -110,6 +114,7 @@ class ToDoAdapter(
         holder.checkBox.text = ""
         holder.checkBox.isChecked = todo.isDone
         holder.editText.setText(todo.text)
+        holder.editText.setPadding(25, 0, 0, 0)
 
         holder.checkBox.setOnCheckedChangeListener(null)
         holder.checkBox.isChecked = todo.isDone
@@ -203,6 +208,10 @@ class ToDoAdapter(
                 verify *= -1
                 res_text = holder.editText.text.toString()
                 holder.editText.isEnabled = true
+                holder.editText.requestFocus()
+                val imm: InputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+
                 holder.doneButton.text = "ENTER"
                 holder.doneButton.isSelected = true
 
@@ -276,6 +285,6 @@ class ToDoAdapter(
     }
 
     fun feelProgressText(feelAvg: Int, progress: Int) {
-        feelView.text = "행복도 : ${feelAvg}% 진행도 : ${progress}%"
+        feelView.text = "행복도: ${feelAvg}%   진행도: ${progress}%"
     }
 }

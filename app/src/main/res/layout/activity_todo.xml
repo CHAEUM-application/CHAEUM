@@ -6,53 +6,69 @@
               android:background="@android:color/white"
               android:orientation="vertical">
 
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:id="@+id/textView3"/>
     <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="70dp">
-        <TextView
-                android:text="        Todo List"
-                android:textSize="30dp"
-                android:textStyle="bold"
-                android:layout_width="342dp"
-                android:layout_height="70dp"
-                android:id="@+id/todoView"
-                android:gravity="center"/>
-        <Button
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="20dp"
+    >
+
+        <ImageButton
                 android:id="@+id/backButton"
-                android:layout_width="50dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="fitStart"
+                android:padding="0dp"
+                android:backgroundTint="@color/white"
+                android:background="@color/white"
+                android:src="@drawable/backpage_button" />
+
+
+        <TextView
+                android:id="@+id/todoView"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:drawableEnd="@drawable/backpage_resize"
-                android:background="@android:color/white"
-                android:textColor="#B3FFFFFF"
-                style="?android:attr/borderlessButtonStyle"/>
+                android:layout_marginRight="28dp"
+                android:layout_weight="1"
+                android:text="Todo List"
+                android:textAlignment="center"
+                android:textColor="@color/title_green"
+                android:textSize="23sp"
+                android:fontFamily="@font/nanumbold"
+
+        />
+
     </LinearLayout>
 
     <LinearLayout
             android:orientation="horizontal"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="30dp">
+            android:layout_height="wrap_content">
 
         <TextView
                 android:id="@+id/dateTextView"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Selected Date: "
-                android:textSize="20dp"
-                android:textColor="#B3000000"
-                android:layout_marginLeft="10dp" />
+                android:textSize="19sp"
+                android:textColor="@color/dark_gray"
+                android:fontFamily="@font/nanumbold"
+               />
+
 
         <TextView
-                android:text="행복도 : 100% 진행도 : 70%"
+                android:text="행복도: 0%  진행도: 0%"
                 android:gravity="end"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:textColor="@color/dark_gray"
+                android:textSize="15sp"
+                android:fontFamily="@font/nanumbold"
                 android:id="@+id/feelView" />
     </LinearLayout>
 
@@ -62,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:scaleY="9"
-            android:progressTint="#C8E6C9"
+            android:progressTint="@color/light_green"
             android:progressBackgroundTint="#C7CAC7"/>
 
 
@@ -73,6 +89,11 @@
             android:layout_weight="1"
             android:background="@android:color/white"
             android:scrollbars="vertical"/>
+
+    <View
+            android:layout_width="wrap_content"
+            android:layout_height="3dp"
+            android:background="#EFEFEF"/>
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -86,8 +107,9 @@
                 android:layout_width="140dp"
                 android:layout_height="70dp"
                 android:text="작성하기"
-                android:textSize="20dp"
-                android:textColor="#737373"
+                android:textSize="19sp"
+                android:textColor="@color/dark_gray"
+                android:fontFamily="@font/nanumbold"
                 android:background="@android:color/white"
                 android:drawableRight="@drawable/addtodo_resize"
                 style="?android:attr/borderlessButtonStyle"/>
@@ -95,15 +117,16 @@
         <TextView
                 android:layout_height="wrap_content"
                 android:id="@+id/textView4"
-                android:layout_width="40dp"/>
+                android:layout_width="45dp"/>
         <Button
                 android:id="@+id/removeButton"
                 android:layout_width="135dp"
                 android:layout_height="70dp"
                 android:background="@android:color/white"
                 android:text="삭제하기"
-                android:textSize="20dp"
-                android:textColor="#737373"
+                android:textSize="19sp"
+                android:textColor="@color/dark_gray"
+                android:fontFamily="@font/nanumbold"
                 android:drawableRight="@drawable/rmvtodo_resize"
                 style="?android:attr/borderlessButtonStyle"/>
 
