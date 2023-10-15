@@ -1,16 +1,15 @@
 package com.example.life
 
 import android.annotation.SuppressLint
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.ProgressBar
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
 import retrofit2.Callback
@@ -19,6 +18,7 @@ import retrofit2.Response
 class ToDoAdapter(
     val todos: MutableList<ToDo>,
     private val progressBar: ProgressBar,
+    private val feelView: TextView,
     private val u_id: String,
     private val year: String,
     private val month: String,
@@ -42,23 +42,34 @@ class ToDoAdapter(
         emotionListener = object : AdapterView.OnItemSelectedListener {
             // 감정 콤보 박스가 선택될 시
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-
                 selectedEmotion = pos
                 val text = viewHolder.itemView.findViewById<EditText>(R.id.editText).text.toString()
-
+                val position = todos.indexOfFirst { it.text == text }
+                todos[position].emotion = pos
                 RetrofitClient.api.updTodoInfo(u_id,year, month, week, text, text, 5, selectedEmotion).enqueue(object : Callback<Unit>{
                     override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
                         // 감정 변경 완료
                         Log.d("TAG", "넘어감")
                         Log.d("TAG", text)
                         Log.d("TAG", pos.toString())
+                        progressBar.progress = getCompletedTodosCount()
+                        var progressAvg = (progressBar.progress.toFloat() / progressBar.max * 100).toInt()
+                        val feelAvg =  calculateFeelAverage()
+                        Log.d("TAGnowChange", feelAvg.toString())
+                        // UI 업데이트를 Handler를 통해 스케줄링
+                        feelProgressText(feelAvg, progressAvg)
                         return
                     }
-
                     override fun onFailure(call: Call<Unit>, t: Throwable) {
                         return
                     }
                 })
+                var feelAvg = calculateFeelAverage()
+                progressBar.max = todos.size
+                progressBar.progress = getCompletedTodosCount()
+                var progressAvg = (progressBar.progress.toFloat() / progressBar.max * 100).toInt()
+                Log.d("TAGfeel", feelAvg.toString())
+                feelProgressText(feelAvg, progressAvg)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -73,6 +84,7 @@ class ToDoAdapter(
     var res_text: String = ""
     var req_text: String = ""
     var r_status: Int = 0
+    val handler = Handler(Looper.getMainLooper())
 
     override fun onBindViewHolder(holder: ToDoViewHolder, position: Int) {
         val todo = todos[position]
@@ -83,7 +95,10 @@ class ToDoAdapter(
         // Initialize progress bar
         progressBar.max = todos.size
         progressBar.progress = getCompletedTodosCount()
-
+        var progressAvg = (progressBar.progress.toFloat() / progressBar.max * 100).toInt()
+        var feelAvg = calculateFeelAverage()
+        Log.d("TAGcur", feelAvg.toString())
+        feelProgressText(feelAvg,progressAvg)
         if(todo.text == "") {
             holder.doneButton.text = "ENTER"
             holder.editText.isEnabled = true
@@ -113,6 +128,14 @@ class ToDoAdapter(
                 .enqueue(object : Callback<Unit> {
                     override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
                         // status 1로 변경 완료
+                        progressBar.progress = getCompletedTodosCount()
+                        var progressAvg = (progressBar.progress.toFloat() / progressBar.max * 100).toInt()
+                        Log.d("TAGpro", feelAvg.toString())
+                        val feelAvg = calculateFeelAverage()
+                        // UI 업데이트를 Handler를 통해 스케줄링
+                        handler.post {
+                            feelProgressText(feelAvg, progressAvg)
+                        }
                         return
                     }
 
@@ -122,6 +145,9 @@ class ToDoAdapter(
 
                 })
             progressBar.progress = getCompletedTodosCount()
+            progressAvg = (progressBar.progress.toFloat() / progressBar.max * 100).toInt()
+            Log.d("TAGpro", feelAvg.toString())
+            feelProgressText(feelAvg,progressAvg)
         }
 
         //holder.editText.isEnabled = !todo.isDone
@@ -135,6 +161,39 @@ class ToDoAdapter(
                 todo.text = s.toString()
             }
         })
+
+//        fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+//            selectedEmotion = pos
+//            todos[position].emotion = pos
+//            Log.d("TAG",todos[position].emotion.toString())
+//            RetrofitClient.api.updTodoInfo(u_id,year, month, week, todo.text, todo.text, 5, selectedEmotion).enqueue(object : Callback<Unit>{
+//                override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+//                    // 감정 변경 완료
+//                    Log.d("TAG", "넘어감")
+//                    Log.d("TAG", todo.text)
+//                    Log.d("TAG", pos.toString())
+//                    todos[position].emotion = pos
+//                    progressBar.progress = getCompletedTodosCount()
+//                    var progressAvg = (progressBar.progress.toFloat() / progressBar.max * 100).toInt()
+//                    val feelAvg =  calculateFeelAverage()
+//                    Log.d("TAGnowChange", feelAvg.toString())
+//                    // UI 업데이트를 Handler를 통해 스케줄링
+//                    feelProgressText(feelAvg, progressAvg)
+//                    return
+//                }
+//                override fun onFailure(call: Call<Unit>, t: Throwable) {
+//                    return
+//                }
+//            })
+//            todos[position].emotion = pos
+//            Log.d("TAG",todos[position].emotion.toString())
+//            var feelAvg = calculateFeelAverage()
+//            progressBar.max = todos.size
+//            progressBar.progress = getCompletedTodosCount()
+//            var progressAvg = (progressBar.progress.toFloat() / progressBar.max * 100).toInt()
+//            Log.d("TAGfeel", feelAvg.toString())
+//            feelProgressText(feelAvg, progressAvg)
+//        }
 
         holder.doneButton.setOnClickListener {
             // 수정아닐땐 -> 텍스트 못건드림 수정누르면 값가져옴
@@ -175,6 +234,8 @@ class ToDoAdapter(
                 }
             }
         }
+
+
     }
 
     override fun getItemCount(): Int = todos.size
@@ -199,5 +260,22 @@ class ToDoAdapter(
 
     fun getItemText(position: Int): String {
         return todos[position].text
+    }
+
+    fun calculateFeelAverage(): Int {
+        if (todos.isEmpty()) {
+            return 0
+        }
+        var totalFeel = 0
+        var totalTodo = 0
+        for (todo in todos) {
+            totalFeel += todo.emotion
+            totalTodo++
+        }
+        return if (totalTodo > 0) (totalFeel.toFloat() / totalTodo*25).toInt() else 0
+    }
+
+    fun feelProgressText(feelAvg: Int, progress: Int) {
+        feelView.text = "행복도 : ${feelAvg}% 진행도 : ${progress}%"
     }
 }

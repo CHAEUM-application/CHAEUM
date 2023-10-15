@@ -44,10 +44,12 @@ class ToDoActivity : AppCompatActivity() {
         val dateTextView = findViewById<TextView>(R.id.dateTextView)
         dateTextView.text = "$selectedYear" + "년 $selectedMonth" + "월 $selectedWeek" + "주차"
 
+        val feelView = findViewById<TextView>(R.id.feelView)
+
         progressBar = findViewById(R.id.progressBar)
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = ToDoAdapter(mutableListOf(), progressBar, id ?: "", year, month, week, 0, 0)
+        adapter = ToDoAdapter(mutableListOf(), progressBar, feelView, id ?: "", year, month, week, 0, 0)
         recyclerView.adapter = adapter
 
         id?.let {
