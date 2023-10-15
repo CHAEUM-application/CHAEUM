@@ -32,6 +32,7 @@ class ToDoAdapter(
 
 ) : RecyclerView.Adapter<ToDoViewHolder>() {
     private var selectedEmotion: Int = 0
+    private var feelAvg = 0
     private lateinit var emotionListener: AdapterView.OnItemSelectedListener
     private lateinit var emotionsAdapter: ArrayAdapter<String>
 
@@ -261,6 +262,14 @@ class ToDoAdapter(
         notifyDataSetChanged()
         progressBar.max = todos.size // Update the total count in the progress bar
         progressBar.progress = getCompletedTodosCount()
+        progressBar.progress = getCompletedTodosCount()
+        var progressAvg = (progressBar.progress.toFloat() / progressBar.max * 100).toInt()
+        Log.d("TAGpro", feelAvg.toString())
+        val feelAvg = calculateFeelAverage()
+        // UI 업데이트를 Handler를 통해 스케줄링
+        handler.post {
+            feelProgressText(feelAvg, progressAvg)
+        }
     }
 
     fun getCompletedTodosCount(): Int = todos.count { it.isDone }
