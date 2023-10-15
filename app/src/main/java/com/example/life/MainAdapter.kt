@@ -30,7 +30,18 @@ class MainAdapter(
         val year = birthYear + position
         val age = position+1
         holder.monthText.text = "$age"
-        holder.monthRecyler.layoutManager = LinearLayoutManager(holder.itemView.context, LinearLayoutManager.HORIZONTAL, false)
+
+        holder.monthRecyler.layoutManager= object : LinearLayoutManager(holder.itemView.context, LinearLayoutManager.HORIZONTAL,false){
+            override fun canScrollVertically(): Boolean {
+                return false // 세로 스크롤 차단
+            }
+
+            override fun canScrollHorizontally(): Boolean {
+                return false // 가로 스크롤 차단
+            }
+        }
+        //holder.monthRecyler.layoutManager = LinearLayoutManager(holder.itemView.context, LinearLayoutManager.HORIZONTAL, false)
+        holder.monthRecyler.isNestedScrollingEnabled=false
         holder.monthRecyler.adapter = MonthAdapter(year, age, id, holder.itemView.context)
     }
 

@@ -4,6 +4,16 @@
         <!-- 기타 테마 속성 설정 -->
     </style>
 
+    <style name="CustomDatePickerStyle">
+        <item name="android:datePickerStyle">@style/CustomDatePicker</item>
+    </style>
+
+    <style name="CustomDatePicker">
+        <item name="android:fontFamily">@font/nanumneoregular</item>
+        <!-- 여기에서 기타 속성 추가 -->
+    </style>
+
+
     <style name="EditTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorAccent">@color/light_gray</item>
     </style>

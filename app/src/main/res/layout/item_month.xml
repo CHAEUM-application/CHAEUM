@@ -6,11 +6,11 @@
 
     <View
         android:id="@+id/yearView"
-        android:layout_width="27dp"
-        android:layout_height="27dp"
+        android:layout_width="26.5dp"
+        android:layout_height="26.5dp"
         android:layout_marginLeft="1dp"
         android:layout_marginRight="1dp"
-        android:layout_marginTop="0.25dp"
-        android:layout_marginBottom="0.25dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
         android:background="@android:color/white" />
 </FrameLayout>

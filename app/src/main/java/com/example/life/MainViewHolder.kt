@@ -7,4 +7,5 @@ import androidx.recyclerview.widget.RecyclerView
 class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val monthText: TextView = view.findViewById(R.id.monthtext)
     val monthRecyler: RecyclerView = view.findViewById(R.id.monthRecycler)
+
 }

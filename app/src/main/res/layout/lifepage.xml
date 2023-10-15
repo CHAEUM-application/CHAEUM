@@ -46,13 +46,13 @@
 
     <ImageView
             android:id="@+id/person"
-            android:layout_width="81dp"
-            android:layout_height="81dp"
+            android:layout_width="82dp"
+            android:layout_height="82dp"
             app:layout_constraintStart_toStartOf="@+id/linearLayout6"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
             android:src="@drawable/person"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="15dp">
+            android:layout_marginLeft="14dp">
 
     </ImageView>
 
@@ -134,15 +134,17 @@
             android:id="@+id/enterBtn"/>
 
 
-<androidx.recyclerview.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="164dp"
+            android:layout_marginTop="160dp"
             android:clipToPadding="false"
-            android:padding="10dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="11dp"
             app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="0dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
 
 <!--    <TextView-->

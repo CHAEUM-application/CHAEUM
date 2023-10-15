@@ -71,6 +71,7 @@
                 android:paddingBottom="15dp"
                 android:textSize="14sp"
                 android:theme="@style/EditTheme"
+                android:fontFamily="@font/nanumneoregular"
         />
 
         <Button
