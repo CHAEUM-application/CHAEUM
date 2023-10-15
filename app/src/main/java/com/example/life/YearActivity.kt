@@ -75,9 +75,13 @@ class YearActivity : AppCompatActivity() {
         val yearTarget1 = findViewById<EditText>(R.id.yearTarget1)
         val yearTarget2 = findViewById<EditText>(R.id.yearTarget2)
         val yearTarget3 = findViewById<EditText>(R.id.yearTarget3)
-        val yearBtn1 = findViewById<Button>(R.id.yearBtn1)
-        val yearBtn2 = findViewById<Button>(R.id.yearBtn2)
-        val yearBtn3 = findViewById<Button>(R.id.yearBtn3)
+
+        yearTarget1.setPadding(25, 0, 0, 0)
+        yearTarget2.setPadding(25, 0, 0, 0)
+        yearTarget3.setPadding(25, 0, 0, 0)
+        val yearBtn1 = findViewById<ImageButton>(R.id.yearBtn1)
+        val yearBtn2 = findViewById<ImageButton>(R.id.yearBtn2)
+        val yearBtn3 = findViewById<ImageButton>(R.id.yearBtn3)
         val targetCheck = findViewById<TextView>(R.id.targetCheck)
 
         var target1Empty = false
@@ -102,19 +106,19 @@ class YearActivity : AppCompatActivity() {
                                     "101" -> {
                                         yearTarget1.text = editableText
                                         existingTargets.add("101")
-                                        target1Empty = yearTarget1.text.toString().isEmpty()
+                                        target1Empty = yearTarget1.text.toString().trim().isEmpty()
                                         if (dto.status == 1) yearBtn1.isSelected = true
                                     }
                                     "102" -> {
                                         yearTarget2.text = editableText
                                         existingTargets.add("102")
-                                        target2Empty = yearTarget2.text.toString().isEmpty()
+                                        target2Empty = yearTarget2.text.toString().trim().isEmpty()
                                         if (dto.status == 1) yearBtn2.isSelected = true
                                     }
                                     "103" -> {
                                         yearTarget3.text = editableText
                                         existingTargets.add("103")
-                                        target3Empty = yearTarget3.text.toString().isEmpty()
+                                        target3Empty = yearTarget3.text.toString().trim().isEmpty()
                                         if (dto.status == 1) yearBtn3.isSelected = true
 
                                     }
@@ -130,11 +134,11 @@ class YearActivity : AppCompatActivity() {
                             }
                         }
                         targetCheck.text = when {
-                            target1Empty && target2Empty && target3Empty -> "목표를 입력해주세요!"
-                            btnCnt == 0 -> "얼른 시작하셔야겠어요!"
-                            btnCnt == 1 -> "남은 목표도 도전해봐요!"
-                            btnCnt == 2 -> "마지막 목표까지 하나 남았어요!"
-                            btnCnt == 3 -> "${selectedYear}년 연간 목표를 다 달성했어요!"
+                            target1Empty && target2Empty && target3Empty -> "목표를 입력해주세요!😊"
+                            btnCnt == 0 -> "얼른 시작하셔야겠어요!😯"
+                            btnCnt == 1 -> "남은 목표도 도전해봐요!🤗"
+                            btnCnt == 2 -> "마지막 목표까지 하나 남았어요!😆"
+                            btnCnt == 3 -> "${selectedYear}년 연간 목표를 다 달성했어요!🥳"
                             else -> "no"
                         }
                     }
@@ -196,6 +200,11 @@ class YearActivity : AppCompatActivity() {
                             var handled = false
                             if (action == EditorInfo.IME_ACTION_DONE) {
                                 val curText = yearTarget.text.toString()
+                                when(index){
+                                        0 -> target1Empty= curText.trim().isEmpty()
+                                        1 -> target2Empty= curText.trim().isEmpty()
+                                        2 -> target3Empty= curText.trim().isEmpty()
+                                }
                                 preTexts[index]?.let {
                                     RetrofitClient.api.updTodoInfo(id, selectedYear.toString(), "${index + 101}", "0", curText,
                                         it, -1, 0)
@@ -215,6 +224,7 @@ class YearActivity : AppCompatActivity() {
                                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                                 imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
                                 yearTarget.clearFocus()
+                                btnCheck()
                                 handled = true
                             }
                             handled
@@ -234,7 +244,7 @@ class YearActivity : AppCompatActivity() {
         adapter = MonthListAdapter(selectedYear, id ?: "")  // Modify this line
         recyclerView.adapter = adapter
 
-        val backButton = findViewById<Button>(R.id.backButton)
+        val backButton = findViewById<ImageButton>(R.id.backButton)
         backButton.setOnClickListener {
             finish()
         }
@@ -245,8 +255,11 @@ class YearActivity : AppCompatActivity() {
     }
 
     // 연간 목표 달성 버튼 변경
-    fun targetBtnStatus(targetButton: Button, id: String, year: String, month: String, yearTarget: EditText, btnCheck: () -> Unit) {
+    fun targetBtnStatus(targetButton: ImageButton, id: String, year: String, month: String, yearTarget: EditText, btnCheck: () -> Unit) {
         targetButton.setOnClickListener(View.OnClickListener {
+            if (yearTarget.text.trim().isEmpty()){
+                return@OnClickListener
+            }
             val isSelected = targetButton.isSelected
             val status = if (isSelected) 0 else 1
             updTgt(id, year, month, yearTarget.text.toString(), status)

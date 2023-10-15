@@ -9,6 +9,7 @@
         android:id="@+id/weekView"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_margin="5dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginBottom="10dp"
         android:visibility="visible" />
 </LinearLayout>

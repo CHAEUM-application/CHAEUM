@@ -19,9 +19,8 @@
     </style>
 
     <style name="AppTheme.NumberPicker" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:fontFamily">@font/nanumneobold</item>
         <item name="android:textColorPrimary">@color/dark_gray</item>
-        <item name="colorControlNormal">@color/light_gray</item>
-        <item name="android:textColorHighlight">@color/dark_gray</item>
         <item name="android:textSize">15sp</item>
     </style>
 

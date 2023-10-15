@@ -3,27 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
-
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/backpage_resize"/>
+    android:background="@android:color/white"
+    android:padding="20dp">
 
     <TextView
         android:id="@+id/yearTextView"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="@android:color/white"
+        android:background="@color/white"
         android:gravity="center_horizontal"
         android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/title_green"
+        android:textSize="22sp"
+        android:text="2023"
+        android:fontFamily="@font/nanumbold"
+    />
+
+    <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="fitStart"
+            android:padding="0dp"
+            android:backgroundTint="@color/white"
+            android:background="@color/white"
+            android:src="@drawable/backpage_button"
+    />
+
 
     <LinearLayout
             android:orientation="vertical"
@@ -31,75 +39,151 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/yearTextView"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
     >
-        <TextView
-                android:text="연간 목표 : 3개의 목표를 작성하세요."
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView8"/>
+                android:orientation="horizontal">
+
+            <TextView
+                    android:text="연간 목표"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/textView8"
+                    android:textColor="@color/dark_gray"
+                    android:fontFamily="@font/nanumbold"
+                    android:textSize="16sp"
+            />
+
+            <TextView
+                    android:text="1년 동안 이루고 싶은 것 3가지"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:id="@+id/textView9"
+                    android:fontFamily="@font/nanumregular"
+                    android:textSize="15sp"
+            />
+
+
+        </LinearLayout>
+
+
+
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            <Button
-                    android:background="@drawable/btn_target"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+        >
+            <ImageButton
+                    android:src="@drawable/btn_target"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:scaleType="fitStart"
+                    android:padding="0dp"
+                    android:backgroundTint="@color/white"
+                    android:background="@color/white"
                     android:id="@+id/yearBtn1"/>
             <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="48dp"
                     android:inputType="text"
                     android:maxLines="1"
                     android:imeOptions="actionDone"
-                    android:id="@+id/yearTarget1"/>
+                    android:id="@+id/yearTarget1"
+                    android:layout_marginLeft="5dp"
+
+                    android:textColor="@color/dark_gray"
+                    android:theme="@style/EditTheme"
+
+                    android:textSize="16sp"
+                    android:backgroundTint="@color/clight_gray"
+                    android:fontFamily="@font/nanumregular"
+
+            />
         </LinearLayout>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            <Button
-                    android:background="@drawable/btn_target"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
+            <ImageButton
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:scaleType="fitStart"
+                    android:padding="0dp"
+                    android:backgroundTint="@color/white"
+                    android:background="@color/white"
+                    android:src="@drawable/btn_target"
                     android:id="@+id/yearBtn2"/>
+
             <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="48dp"
                     android:inputType="text"
                     android:maxLines="1"
                     android:imeOptions="actionDone"
-                    android:id="@+id/yearTarget2"/>
+                    android:id="@+id/yearTarget2"
+
+                    android:layout_marginLeft="5dp"
+                    android:theme="@style/EditTheme"
+
+                    android:textSize="16sp"
+                    android:backgroundTint="@color/clight_gray"
+                    android:fontFamily="@font/nanumregular"
+                    android:textColor="@color/dark_gray"
+
+            />
         </LinearLayout>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            <Button
-                    android:background="@drawable/btn_target"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
+            <ImageButton
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:scaleType="fitStart"
+                    android:padding="0dp"
+                    android:backgroundTint="@color/white"
+                    android:background="@color/white"
+                    android:src="@drawable/btn_target"
                     android:id="@+id/yearBtn3"/>
             <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="48dp"
                     android:inputType="text"
                     android:maxLines="1"
+                    android:backgroundTint="@color/clight_gray"
+                    android:theme="@style/EditTheme"
                     android:imeOptions="actionDone"
-                    android:id="@+id/yearTarget3"/>
+                    android:id="@+id/yearTarget3"
+
+
+                    android:layout_marginLeft="5dp"
+                    android:fontFamily="@font/nanumregular"
+                    android:textSize="16sp"
+                    android:textColor="@color/dark_gray"
+
+            />
         </LinearLayout>
         <TextView
-                android:text="목표 달성 수 표시"
+                android:text=" "
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/targetCheck"/>
+                android:id="@+id/targetCheck"
+                android:fontFamily="@font/nanumbold"
+                android:textColor="@color/dark_gray"
+                android:textSize="16sp"
+                android:layout_marginTop="10dp"
+        />
 
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/white"
