@@ -39,21 +39,38 @@ class YearActivity : AppCompatActivity() {
         val yearTextView = findViewById<TextView>(R.id.yearTextView)
         yearTextView.text = "$selectedYear" + "년"
 
-        val yearDialog = yearPickerDialog(selectedYear,25){
-            if (it!=selectedYear){
-                Toast.makeText(this@YearActivity, "${it}년 변경완료", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this@YearActivity, YearActivity::class.java).apply{
-                    putExtra("id", id)
-                    Log.d("TAG",it.toString())
-                    putExtra("selectedYear", it)
+        if (id != null) {
+            RetrofitClient.api.getUserID(id).enqueue(object: Callback<UsersDTO>{
+                override fun onResponse(call: Call<UsersDTO>, response: Response<UsersDTO>) {
+                    var age = 0
+                    val result = response.body()
+                    val birthDay = result?.c_date.toString()
+                    val year = birthDay?.substring(0,4)?.toInt()!!
+                    age = (Year.now().value -year +1)
+                    Log.d("TAG",age.toString())
+
+                    val yearDialog = yearPickerDialog(selectedYear,age){
+                        if (it!=selectedYear){
+                            Toast.makeText(this@YearActivity, "${it}년 변경완료", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this@YearActivity, YearActivity::class.java).apply{
+                                putExtra("id", id)
+                                Log.d("TAG",it.toString())
+                                putExtra("selectedYear", it)
+                            }
+                            startActivity(intent)
+                            finish()
+                        }
+                    }
+                    yearTextView.setOnClickListener{
+                        yearDialog.show(supportFragmentManager, "yearPickerDialog")
+                    }
                 }
-                startActivity(intent)
-                finish()
-            }
+                override fun onFailure(call: Call<UsersDTO>, t: Throwable) {
+                }
+
+            })
         }
-        yearTextView.setOnClickListener{
-            yearDialog.show(supportFragmentManager, "yearPickerDialog")
-        }
+
 
         val yearTarget1 = findViewById<EditText>(R.id.yearTarget1)
         val yearTarget2 = findViewById<EditText>(R.id.yearTarget2)
