@@ -24,7 +24,7 @@ class MonthAdapter(
     private val sadColorStart = Color.parseColor("#f5f3f2")  // 0%
     private val sadColorEnd = Color.parseColor("#a4928e")   // 100%
     private val sosoColorStart = Color.parseColor("#fdf7f1")  // 0%
-    private val sosoColorEnd = Color.parseColor("#dec8b0")   // 100%
+    private val sosoColorEnd = Color.parseColor("#f0b57b")   // 100%
     private val goodColorStart = Color.parseColor("#f0f9f3")  // 0%
     private val goodColorEnd = Color.parseColor("#8dcfa8")   // 100%
     private val happyColorStart = Color.parseColor("#f9eeea")  // 0%
