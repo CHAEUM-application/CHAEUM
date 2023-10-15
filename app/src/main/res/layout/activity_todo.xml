@@ -32,15 +32,29 @@
                 style="?android:attr/borderlessButtonStyle"/>
     </LinearLayout>
 
-    <TextView
-            android:id="@+id/dateTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="Selected Date: "
-            android:textSize="20dp"
-            android:textAlignment="center"
-            android:textColor="#B3000000"
-            android:layout_marginLeft="10dp"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+        <TextView
+                android:id="@+id/dateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:text="Selected Date: "
+                android:textSize="20dp"
+                android:textColor="#B3000000"
+                android:layout_marginLeft="10dp" />
+
+        <TextView
+                android:text="행복도 : 100% 진행도 : 70%"
+                android:gravity="end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:id="@+id/feelView" />
+    </LinearLayout>
 
     <ProgressBar
             android:id="@+id/progressBar"
